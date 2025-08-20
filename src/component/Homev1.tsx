@@ -1,17 +1,15 @@
-import React from "react";
-import "../index.css";
 import Hero from './Hero';
 import Capabilities from './Capabilities';
 import Timeline from './Timeline';
 import Testimonials from './Testimonials';
 
-export default function Home(): JSX.Element {
+export default function Home() {
   return (
     <main className="home-root">
       <header className="site-header">
         <div className="container nav-container">
           <div className="brand">
-            <a href="/" className="logo">Data<span>Engineer</span></a>
+            <a href="/" className="logo">Bao<span>DK</span></a>
           </div>
           <nav className="main-nav">
             <a href="#capabilities">Capabilities</a>
@@ -42,8 +40,8 @@ export default function Home(): JSX.Element {
       <footer className="site-footer">
         <div className="container">
           <div className="footer-row">
-            <div>© {new Date().getFullYear()} Michelle Rodriguez</div>
-            <div className="socials">• <a href="#">GitHub</a> • <a href="#">LinkedIn</a></div>
+            <div>© {new Date().getFullYear()} Bao DK</div>
+            <div className="socials">• <a href="https://github.com/MrBaoDK">GitHub</a> • <a href="https://linkedin.com/in/baodk">LinkedIn</a></div>
           </div>
         </div>
       </footer>

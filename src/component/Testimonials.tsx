@@ -1,9 +1,9 @@
 import React from 'react';
 
-type Testimonial = { logo: string; text: string; cite: string };
+interface ITestimonial{ logo: string; text: string; cite: string };
 
 export default function Testimonials(){
-  const items: Testimonial[] = [
+  const items: ITestimonial[] = [
     {logo:'TF', text:'“Their LLM integration reduced manual processing by 85% and accelerated onboarding for new datasets.”', cite:'— Sarah Johnson, CTO, TechFlow Inc.'},
     {logo:'IL', text:'“The React dashboards delivered real-time insights and excellent UX across devices.”', cite:'— Michael Chen, Product Director, Industry Leaders Co.'},
     {logo:'DI', text:'“Automated QA and CI practices improved our data reliability and reduced incidents significantly.”', cite:'— David Rodriguez, Analytics Lead, DataInsights LLC'}

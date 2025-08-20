@@ -1,13 +1,20 @@
-import React from 'react'
-
-type Props = {
+interface IHeroProps {
   name?: string
   title?: string
   headline?: string
   subheadline?: string
-}
+};
 
-export default function Hero({name='Michelle Rodriguez', title='Fullstack Data & Quality Engineer', headline='Scalable, AI‑Powered, Test‑Driven Data & Quality Engineering', subheadline='Delivering enterprise-grade solutions with Python, React, LLM integration and DevOps automation — production-ready, observable, and built for scale.'}: Props): JSX.Element {
+const defaultHero: IHeroProps = {
+  name: 'Bao DK', 
+  title: 'Fullstack Data & Quality Engineer', 
+  headline: 'Scalable, AI‑Powered, Test‑Driven Data & Quality Engineering', 
+  subheadline:'Delivering enterprise-grade solutions with Python, React, LLM integration and DevOps automation — production-ready, observable, and built for scale.'
+};
+
+export default function Hero(props = defaultHero) {
+  const {name, title, headline, subheadline} = props;
+
   return (
     <section className="hero" id="hero">
       <div className="container hero-grid">
