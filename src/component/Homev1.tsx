@@ -3,7 +3,7 @@ import Capabilities from './Capabilities';
 import Timeline from './Timeline';
 import Testimonials from './Testimonials';
 
-export default function Home() {
+export default function Homev1() {
   return (
     <main className="home-root">
       <header className="site-header">
