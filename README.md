@@ -35,10 +35,17 @@ or
 npx http-server -c-1
 ```
 
-3) Run as React app
-- Install dependencies: `npm install`
-- Start dev server: `npm start`
-- Note: The `src/` directory contains basic React scaffolding if you want to port the HTML into components.
+3) Run as React app (Vite + TypeScript + Tailwind)
+- Install dependencies: `pnpm install`
+- Start dev server: `pnpm start`
+- Build for production: `pnpm build`
+
+Notes:
+- This repo was migrated to Vite + React + TypeScript. If you run into type errors, make sure dev dependencies are installed (`@types/react`, `@types/react-dom`).
+- Tailwind CSS in this project reads CSS custom properties (CSS variables). You can customize colors and spacing via the following CSS variables in your global styles or :root:
+  - `--color-primary-500`, `--color-primary-700`, `--color-accent-500`, `--color-muted-200`
+  - `--spacing-page`
+- If you prefer the original static HTML prototypes, open `idea1.html` or `idea3.html` directly.
 
 ## Notes & suggested improvements
 
