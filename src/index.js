@@ -4,8 +4,8 @@ import React from "react";
 import App from "./App";
 import "./index.css";
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root") as HTMLElement | null;
 
-const root = createRoot(rootElement);
+const root = createRoot(rootElement!);
 
 root.render(<App />);
