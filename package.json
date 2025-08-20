@@ -1,7 +1,7 @@
 {
 	"homepage": ".",
 	"name": "baodk-github-page",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"private": true,
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.11.9",
@@ -15,7 +15,7 @@
 	},
 	"scripts": {
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build",
+		"deploy": "gh-pages -d build --cname baodk.zone.id",
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
