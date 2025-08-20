@@ -16,8 +16,8 @@
 	},
 	"scripts": {
 		"prepare": "vite build",
-		"start": "vite --profile --open",
-		"build": "tsc -s && vite build",
+		"start": "vite",
+		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"deploy": "gh-pages -d dist --cname baodk.zone.id",
 		"test": "react-scripts test",

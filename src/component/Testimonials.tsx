@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 interface ITestimonial{ logo: string; text: string; cite: string };
 

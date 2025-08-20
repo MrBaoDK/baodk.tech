@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 interface IEvent { date: string; title: string; body: string };
 
