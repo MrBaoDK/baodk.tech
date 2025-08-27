@@ -1,12 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Timeline from './components/Timeline';
+import Testimonials from './components/Testimonials';
+import CallToAction from './components/CallToAction';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import './styles/globals.css';
 
-import Home from "./component/Home";
-import './index.css';
+const App: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      <Hero />
+      <Skills />
+      <Projects />
+      <Timeline />
+      <Testimonials />
+      <CallToAction />
+      <Contact />
+      <Footer />
+    </div>
+  );
+};
 
-export default function App() {
-	return (<Router>
-		<Routes>
-			<Route index path="/" element={<Home />} />
-		</Routes>
-	</Router>);
-}
+export default App;

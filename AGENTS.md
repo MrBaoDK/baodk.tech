@@ -1,46 +1,102 @@
-AGENTS for maintainers and contributors
+# Development Rules & Guidelines
 
-Purpose
-- Capture important implementation notes, known issues, and style rules for working with the Vite + React + TypeScript migration and legacy prototypes.
+## Purpose
+Simple rules for building a personal portfolio website with React + TypeScript.
 
-Quick start
-- Preview the React app by running the dev server (`pnpm start`). Legacy static prototypes are kept as archived references but are not recommended for production edits.
-- To run the React app locally (Vite): `pnpm install` then `pnpm start`.
+## Project Structure (Required)
+```
+src/
+├── components/     # All React components
+├── data/          # Content files
+├── styles/        # CSS files
+└── types/         # TypeScript types
+```
 
-Known issues
-- Legacy prototypes contain small JS issues (broken selectors, incomplete scroll handlers). They are maintained only as visual references; prefer editing the React components under `src/` for production changes.
-- Migration note: several files were converted to TypeScript (`.tsx`). If you see JSX in a `.js` file, rename it to `.jsx` or `.tsx`.
-- Repo update: a new `src/component/Home.tsx` was added. Tailwind uses CSS variables in `src/index.css` for colors and spacing; update those when theming.
+## Component Rules
 
-Coding style
-- Prefer modular CSS when migrating to React. Tailwind CSS is configured to read design tokens from CSS variables (see README for variable names).
-- Use BEM-like class names for components to avoid global collisions when adding custom CSS.
-- Add a linting and style pipeline (eslint, stylelint, prettier) before major refactors.
+### 1. TypeScript Only
+- All components must be `.tsx` files
+- Define interfaces for props and data
+- No `any` types allowed
 
-Accessibility
-- Add `aria-label` or `aria-expanded` to mobile nav toggles.
-- Ensure images have meaningful `alt` attributes or are hidden from screen readers if decorative.
-- Use semantic HTML5 elements (header, nav, main, section, footer).
+### 2. Simple Structure
+- One component per file
+- Keep components small and focused
+- Use composition over complexity
 
-Performance
-- Replace external image links with optimized local assets and add responsive `srcset` where applicable.
-- Defer non-critical JS and avoid blocking the main thread on page load.
+### 3. Styling
+- Use Tailwind CSS with CSS variables
+- Define colors in `globals.css`:
+  ```css
+  :root {
+    --color-primary: #1c1f3f;
+    --color-accent: #ef7b3c;
+    --color-text: #666666;
+  }
+  ```
 
-Build notes
-- Vite + React + TypeScript is used. Common commands:
-  - `pnpm start` — dev server
-  - `pnpm build` — production build
-  - `pnpm preview` — preview production build
-- Tailwind integration: the Tailwind config maps several CSS variables to design tokens. Define these variables in global CSS (eg `:root { --color-primary-500: #... }`).
+## Content Management
 
-Contribution guidelines
-- Fork the repo, create feature branches, and open PRs with a short description of changes.
-- Include screenshots for visual changes and link to a deployed preview when possible.
+### 4. External Data
+- All content in separate files under `data/`
+- Easy to update without touching components
+- Type-safe with TypeScript interfaces
 
-Contacts & ownership
-- Repository owner: Michelle Rodriguez (placeholder). Update contact info in the source files and README when ready.
+### 5. Simple Data Structure
+```typescript
+interface Skill {
+  title: string;
+  description: string;
+  technologies: string[];
+}
 
-Change log
-- v1.0 — Initial prototypes and documentation.
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  impact: string;
+}
+```
 
+## Quality Standards
 
+### 6. Performance
+- Keep bundle size reasonable
+- Optimize images
+- Use lazy loading for images
+
+### 7. Accessibility
+- Use semantic HTML
+- Add alt text for images
+- Ensure keyboard navigation works
+
+### 8. Mobile First
+- Design for mobile first
+- Test on different screen sizes
+- Use responsive breakpoints
+
+## Development Workflow
+
+### 9. Simple Testing
+- Test components manually
+- Check mobile responsiveness
+- Verify all links work
+
+### 10. Deployment
+- Build with `pnpm build`
+- Deploy to Vercel or Netlify
+- Test live site after deployment
+
+## Code Style
+
+### 11. Clean Code
+- Use descriptive variable names
+- Keep functions small
+- Add comments for complex logic
+
+### 12. Consistent Formatting
+- Use Prettier for formatting
+- Follow React naming conventions
+- Keep imports organized
+
+This simplified approach focuses on getting a working portfolio online quickly while maintaining good practices.
