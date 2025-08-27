@@ -5,7 +5,7 @@ This repository contains a React + Vite + TypeScript portfolio/landing project w
 ## Contents
 
 - `public/` — assets such as logos and icons used by the site.
-- `src/` — React app and components (Vite + React + TypeScript + Tailwind). Key files live under `src/component/` and the app entry is `src/main.tsx`.
+- `src/` — React app and components (Vite + React + TypeScript + Tailwind). Key files live under `src/components/` and the app entry is `src/main.tsx`.
 
 ## Purpose
 
@@ -84,17 +84,8 @@ If you'd like, I can add a small `scripts/screenshot.js` and a package.json scri
 - Image optimization: replace external Unsplash images with optimized local assets.
 - Forms: replace alert-based contact form with a real submission endpoint or integrate with a service (Formspree, Netlify Forms).
 - Split CSS into separate files and add a build step if converting to React.
-- Fix small JS bugs in legacy prototypes if you plan to use them as reference. See `AGENT-RULES.md` for maintainers notes.
+- Fix small JS bugs in legacy prototypes if you plan to use them as reference. See `AGENTS.md` for maintainers notes.
 
 ## License
 
 MIT — adapt and reuse freely.
-
----
-
-If you want, I can:
-- Convert either design into a React component structure in `src/`.
-- Create a GitHub Pages deployment configuration.
-- Fix JS bugs in legacy prototypes if you plan to use them as references, or prefer editing React components under `src/` for production.
-
-Tell me which you'd like next.
