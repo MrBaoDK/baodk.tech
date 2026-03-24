@@ -7,15 +7,13 @@
 /.pnp
 .pnp.js
 **/package-lock.json
-**/pnpm-lock.yaml
-**/pnpm-workspace.yaml
 
 # testing
-/coverage
+coverage
 
 # production
-/build
-/dist
+build
+dist
 
 # misc
 .DS_Store

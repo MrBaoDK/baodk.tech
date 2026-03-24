@@ -1,67 +1,21 @@
 {
-	"homepage": ".",
-	"name": "baodk-github-page",
-	"version": "0.1.3",
-	"private": true,
-	"type": "module",
-	"dependencies": {
-		"@testing-library/jest-dom": "^5.11.9",
-		"@testing-library/react": "^11.2.5",
-		"@testing-library/user-event": "^12.8.3",
-		"dev": "^0.1.3",
-		"react": "19.0.0",
-		"react-dom": "19.0.0",
-		"react-router-dom": "7.1.5",
-		"web-vitals": "^1.1.0"
-	},
-	"scripts": {
-		"prepare": "vite build",
-		"start": "vite",
-		"build": "tsc && vite build",
-		"preview": "vite preview",
-		"deploy": "gh-pages -d dist --cname baodk.zone.id",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"devDependencies": {
-		"@tailwindcss/postcss": "^4.1.12",
-		"@types/react": "^18.3.23",
-		"@types/react-dom": "^18.3.7",
-		"@vitejs/plugin-react": "^4.0.0",
-		"autoprefixer": "^10.0.0",
-		"gh-pages": "^6.3.0",
-		"postcss": "^8.0.0",
-		"tailwindcss": "^4.0.0",
-		"typescript": "^5.0.0",
-		"vite": "^5.0.0"
-	},
-	"description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-	"main": "index.js",
-	"repository": {
-		"type": "git",
-		"url": "git@github:MrBaoDK/MrBaoDK.github.io"
-	},
-	"author": "Bao DK",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/MrBaoDK/MrBaoDK.github.io/issues"
-	}
+  "name": "personal-site",
+  "version": "1.0.0",
+  "description": "Personal site",
+  "scripts": {
+    "dev": "pnpm --filter @mrbaodk/site start",
+    "build": "pnpm --filter @mrbaodk/site build",
+    "preview": "pnpm --filter @mrbaodk/site preview",
+    "deploy": "pnpm --filter @mrbaodk/site deploy"
+  },
+  "packageManager": "pnpm@10.30.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github:MrBaoDK/baodk.tech"
+  },
+  "author": "Bao DK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrBaoDK/baodk.tech/issues"
+  }
 }

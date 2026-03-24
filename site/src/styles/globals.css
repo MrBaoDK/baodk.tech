@@ -9,19 +9,24 @@
 }
 
 :root {
-  /* Color palette from PORTFOLIO_SUMMARY.md */
-  --color-primary: #3c9acb;      /* Primary Blue */
-  --color-accent: #ef7b3c;       /* Accent Orange */
-  --color-accent-dark: #d96a2b;  /* Darker orange for hover */
-  --color-dark: #1c1f3f;         /* Dark Navy */
-  --color-white: #ffffff;        /* White */
-  --color-light-gray: #d9d9d9;   /* Light Gray */
-  --color-text: #333333;         /* Main text color */
-  --color-text-light: #666666;   /* Light text color */
-  --color-background: #f8f9fa;   /* Background color */
+  /* Cyber Obsidian (baodk.tech) Palette */
+  --color-primary: #E94560;      /* Accent Crimson */
+  --color-accent: #E94560;       /* Accent Crimson */
+  --color-accent-dark: #C03940;  /* Darker crimson for hover */
+  --color-dark: #1A1A2E;         /* Deep Space Blue (Main Background) */
+  --color-navy: #0F3460;         /* Midnight Navy (Secondary/Cards) */
+  --color-white: #EEEEEE;        /* Primary Light Text */
+  --color-light-gray: #C0C0C0;   /* Silver (Muted Text) */
+  --color-text: #EEEEEE;         /* Main text color */
+  --color-text-light: #C0C0C0;   /* Light/Muted text color */
+  --color-background: #1A1A2E;   /* Background color */
   
+  /* Fonts */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
   /* Additional utility colors */
-  --color-border: #e5e7eb;
+  --color-border: rgba(192, 192, 192, 0.2);
   --color-muted: #6b7280;
   --spacing-page: 1.5rem;
 }
@@ -31,11 +36,17 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   color: var(--color-text);
+  background-color: var(--color-background);
   margin: 0;
   padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
 }
 
 /* Button styles */
