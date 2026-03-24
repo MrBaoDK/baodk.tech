@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { projects } from '@baodk-site/data/projects';
 
 const Projects: React.FC = () => {
@@ -11,25 +12,28 @@ const Projects: React.FC = () => {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <section id="projects" className="section bg-[var(--color-background)]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="section bg-[var(--color-background)] relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="section-header">
-          <h2 className="section-title">Featured Projects</h2>
-          <p className="section-subtitle">
-            Real-world solutions that demonstrate technical excellence and measurable business impact
+        <div className="section-header max-w-3xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+            Featured <span className="text-[var(--color-primary)]">Projects</span>
+          </h2>
+          <p className="text-lg text-white/50 font-medium">
+            Real-world solutions that demonstrate technical excellence and measurable business impact.
+            From MLOps pipelines to high-scale indie tools.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-16">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-3 py-1.5 md:px-4 md:py-2 rounded-full font-medium transition-all duration-300 ${selectedCategory === category
-                  ? 'bg-[var(--color-primary)] text-white shadow-lg'
-                  : 'bg-white text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white border border-[var(--color-light-gray)]'
+              className={`px-6 py-2 rounded-full font-bold text-sm tracking-widest uppercase transition-all duration-300 border ${selectedCategory === category
+                ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] shadow-[0_0_20px_rgba(233,30,96,0.3)] scale-105'
+                : 'bg-white/5 text-white/40 border-white/10 hover:border-white/30 hover:text-white'
                 }`}
             >
               {category}
@@ -38,39 +42,38 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-3">
           {filteredProjects.map((project, index) => (
-            <div key={index} className="card group transition-all duration-300 hover:scale-[1.02]">
+            <div key={index} className="card group">
               {/* Project Header */}
-              <div className="mb-3 md:mb-4">
-                <div className="flex justify-between items-start mb-2 md:mb-3">
-                  <span className="text-xs md:text-sm font-semibold text-[var(--color-accent)] bg-[var(--color-accent)]/10 px-2.5 py-1 md:px-3 rounded-full">
-                    {project.category}
-                  </span>
-                </div>
-                <h3 className="card-title group-hover:text-[var(--color-primary)] transition-colors duration-300">
+              <div className="mb-6">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-4 py-1.5 rounded-full border border-[var(--color-primary)]/20">
+                  {project.category}
+                </span>
+                <h3 className="card-title mt-6 group-hover:text-[var(--color-primary)] transition-colors">
                   {project.title}
                 </h3>
               </div>
 
               {/* Description */}
-              <p className="card-subtitle mb-3 md:mb-4">
+              <p className="card-subtitle mb-8 opacity-80">
                 {project.description}
               </p>
 
               {/* Impact */}
-              <div className="mb-5 md:mb-6 p-3 md:p-4 bg-[var(--color-primary)]/5 rounded-lg border-l-4 border-[var(--color-primary)]">
-                <p className="text-[var(--color-primary)] font-semibold text-xs md:text-sm">
-                  📈 Impact: {project.impact}
+              <div className="mb-8 p-5 bg-white/[0.02] rounded-2xl border border-white/5 border-l-4 border-l-[var(--color-primary)] group-hover:bg-white/[0.04] transition-all">
+                <p className="text-white/40 text-[10px] uppercase font-black tracking-widest mb-1">Impact</p>
+                <p className="text-white font-bold text-sm leading-relaxed">
+                  {project.impact}
                 </p>
               </div>
 
               {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-5 md:mb-6">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {project.technologies.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="tech-badge text-[10px] md:text-xs"
+                    className="px-3 py-1 rounded-md bg-white/5 text-white/40 text-[10px] font-bold border border-white/5 uppercase tracking-tighter"
                   >
                     {tech}
                   </span>
@@ -78,21 +81,21 @@ const Projects: React.FC = () => {
               </div>
 
               {/* Action Button */}
-              <button className="w-full text-[var(--color-primary)] font-semibold hover:text-[var(--color-accent)] transition-colors duration-300 flex items-center justify-center space-x-2 py-2">
-                <span>View Details</span>
-                <span>→</span>
+              <button className="flex items-center gap-2 text-white font-bold text-xs uppercase tracking-widest group/btn hover:text-[var(--color-primary)] transition-colors">
+                <span>View Case Study</span>
+                <span className="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
               </button>
             </div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-12 md:mt-16">
-          <p className="text-lg text-[var(--color-text-light)] mb-4 md:mb-6">
+        <div className="text-center mt-24 reveal">
+          <p className="text-xl text-white/40 mb-8 font-medium">
             Interested in similar results for your organization?
           </p>
-          <button className="btn-primary btn-lg">
-            Contact Me
+          <button className="px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all hover:scale-105 shadow-xl">
+            Book a Collaboration
           </button>
         </div>
       </div>
