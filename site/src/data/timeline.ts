@@ -1,4 +1,4 @@
-import { TimelineItem } from '../types';
+import { TimelineItem } from '@baodk-site/types';
 
 export const careerTimeline: TimelineItem[] = [
   {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { clientTestimonials } from '../data/testimonials';
+
+import { clientTestimonials } from '@baodk-site/data/testimonials';
 
 const Testimonials: React.FC = () => {
   return (
@@ -12,26 +13,26 @@ const Testimonials: React.FC = () => {
             Trusted by industry leaders and recognized for technical excellence and delivery
           </p> */}
         </div>
-        
+
         {/* Testimonials Grid */}
         <div className="testimonial-grid">
           {clientTestimonials.map((testimonial, index) => (
             <div key={index} className="testimonial-card">
               {/* Quote Icon */}
               <div className="quote-icon">"</div>
-              
+
               {/* Testimonial Content */}
               <p className="testimonial-content">
                 {testimonial.content}
               </p>
-              
+
               {/* Client Info */}
               <div className="flex items-center space-x-4 mb-4">
                 {/* Logo/Avatar */}
                 <div className="client-avatar">
                   {testimonial.logo}
                 </div>
-                
+
                 {/* Client Details */}
                 <div>
                   <h4 className="client-name">
@@ -45,7 +46,7 @@ const Testimonials: React.FC = () => {
                   </p>
                 </div>
               </div>
-              
+
               {/* Rating Stars */}
               <div className="star-rating">
                 {[...Array(5)].map((_, starIndex) => (
@@ -57,7 +58,7 @@ const Testimonials: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
         {/* Social Proof Stats */}
         <div className="stats-grid">
           <div className="transition-transform hover:scale-110">
@@ -77,7 +78,7 @@ const Testimonials: React.FC = () => {
             <div className="stat-label">Years Experience</div>
           </div>
         </div>
-        
+
         {/* Bottom CTA */}
         <div className="text-center mt-12 md:mt-16">
           <p className="text-base md:text-xl mb-4 md:mb-6 text-light">

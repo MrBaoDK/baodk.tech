@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { SOCIALS } from '@baodk-site/data/socials';
+
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,7 +21,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo/Brand */}
           <a
-            href="https://baodk.zone.id"
+            href={SOCIALS.WEBSITE.href}
             aria-label="Bao DK - Home"
             className="flex items-center gap-2 md:gap-4 no-underline relative"
           >
@@ -54,7 +56,7 @@ const Header: React.FC = () => {
             {/* Screen-reader-only brand text */}
             <span className="sr-only">Bao DK</span>
           </a>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navItems.map((item) => (
@@ -67,12 +69,12 @@ const Header: React.FC = () => {
               </a>
             ))}
           </nav>
-          
+
           {/* CTA Button */}
           <button className="btn-primary btn-md hidden md:inline-block">
             Hire Me
           </button>
-          
+
           {/* Mobile Menu Button */}
           <button
             className="md:hidden text-2xl bg-transparent border-0 text-white cursor-pointer"
@@ -82,7 +84,7 @@ const Header: React.FC = () => {
             {isMenuOpen ? '✕' : '☰'}
           </button>
         </div>
-        
+
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden pb-4 border-t border-[#374151] mt-4">

@@ -43,6 +43,10 @@ export interface NavItem {
   label: string;
 }
 
+export interface SocialItem extends NavItem {
+  icon: string;
+}
+
 export interface ContactInfo {
   email: string;
   phone?: string;

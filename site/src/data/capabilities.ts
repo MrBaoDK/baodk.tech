@@ -1,4 +1,4 @@
-import { TechnicalCapability } from '../types';
+import { TechnicalCapability } from '@baodk-site/types';
 
 export const technicalCapabilities: TechnicalCapability[] = [
   {

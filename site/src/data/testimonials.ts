@@ -1,4 +1,4 @@
-import { Testimonial } from '../types';
+import { Testimonial } from '@baodk-site/types';
 
 export const clientTestimonials: Testimonial[] = [
   {

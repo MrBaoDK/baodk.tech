@@ -1,4 +1,4 @@
-import { Skill } from '../types';
+import { Skill } from '@baodk-site/types';
 
 export const skills: Skill[] = [
   {

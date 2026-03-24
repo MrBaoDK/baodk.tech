@@ -14,16 +14,13 @@
 ## Icons
 - Use **Material Symbols Outlined** via Google Fonts.
 
+## Aesthetics (Cyber Obsidian)
+- **Glassmorphism**: Use `bg-glass` utility or `backdrop-filter: blur(10px)` with semi-transparent backgrounds for cards and overlays.
+- **Gradients**: Use linear gradients from `--color-dark` to `--color-primary` for visual depth.
+- **Hover States**: Apply subtle transitions and transforms (e.g., `hover:translate-y-[-1px]`, `hover:shadow-lg`).
+- **Borders**: Use subtle borders (`rgba(192, 192, 192, 0.2)`) to define sections in the dark theme.
+
 ## Tailwind CSS 4.0
-- Use CSS variables for colors:
-  ```css
-  :root {
-    --color-primary: #E94560;
-    --color-background: #1A1A2E;
-    --color-navy: #0F3460;
-    --color-white: #EEEEEE;
-    --color-silver: #C0C0C0;
-  }
-  ```
-- Use utility classes for responsive design.
-- **NO hardcoded light backgrounds** (e.g., `bg-white` or `bg-gray-100`).
+- Use CSS variables for all design tokens.
+- **NO hardcoded light backgrounds** (e.g., `bg-white`).
+- Prefer Tailwind's standard spacing and sizing scales.

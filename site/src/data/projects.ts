@@ -1,4 +1,4 @@
-import type { Project } from '../types';
+import type { Project } from '@baodk-site/types';
 
 export const projects: Project[] = [
   {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { skills } from '../data/skills';
+
+import { skills } from '@baodk-site/data/skills';
 
 const Skills: React.FC = () => {
   return (
@@ -11,7 +12,7 @@ const Skills: React.FC = () => {
             Core expertise areas delivering enterprise-grade solutions with measurable business impact
           </p>
         </div>
-        
+
         <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill, index) => (
             <div key={index} className="card text-center transition-all hover:scale-[1.02]">
@@ -32,7 +33,7 @@ const Skills: React.FC = () => {
             </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12 md:mt-16">
           <div className="max-w-4xl mx-auto">
             <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[var(--color-dark)]">
