@@ -1,22 +1,21 @@
-import React, { useEffect, Suspense } from 'react';
+import React, { useEffect, useState, Suspense, useCallback } from 'react';
 
-import Header from '@baodk-site/components/Header';
+import LandingLayout from '@baodk-site/layouts/LandingLayout';
+import ChatLayout from '@baodk-site/layouts/ChatLayout';
+import LandingHero from '@baodk-site/components/LandingHero';
 import ChatAssistant from '@baodk-site/components/chat/ChatAssistant';
-import Hero from '@baodk-site/components/Hero';
-import Footer from '@baodk-site/components/Footer';
-import NavigationDock from '@baodk-site/components/NavigationDock';
+import ChatHero from '@baodk-site/components/ChatHero';
 import LiquidGrid from '@baodk-site/components/effects/LiquidGrid';
 
-// Lazy load below-the-fold components
+// Lazy load section components
 const Skills = React.lazy(() => import('@baodk-site/components/Skills'));
 const Projects = React.lazy(() => import('@baodk-site/components/Projects'));
 const Timeline = React.lazy(() => import('@baodk-site/components/Timeline'));
 const Testimonials = React.lazy(() => import('@baodk-site/components/Testimonials'));
-const CallToAction = React.lazy(() => import('@baodk-site/components/CallToAction'));
 const Contact = React.lazy(() => import('@baodk-site/components/Contact'));
+
 import '@baodk-site/styles/globals.css';
 
-// Helper for lazy loading states
 const SectionLoader: React.FC = () => (
   <div className="h-40 flex items-center justify-center opacity-50">
     <div className="w-6 h-6 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
@@ -24,19 +23,43 @@ const SectionLoader: React.FC = () => (
 );
 
 const App: React.FC = () => {
-  const [isChatOpen, setIsChatOpen] = React.useState(false);
-  const [activeTopic, setActiveTopic] = React.useState<string | null>(null);
-  const [showDock, setShowDock] = React.useState(true);
+  const [currentRoute, setCurrentRoute] = useState(window.location.hash || '#/about');
+  const [messages, setMessages] = useState<any[]>([]);
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleSelectTopic = (topic: string) => {
-    setActiveTopic(topic);
-    setIsChatOpen(true);
-  };
-
+  // Hash Routing & Animation Logic
   useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash || '#/about';
+      setCurrentRoute(hash);
+
+      // Handle scroll to anchor if present (e.g., #/about#projects)
+      if (hash.includes('#', 2)) {
+        const anchorId = hash.split('#').pop();
+        if (anchorId) {
+          setTimeout(() => {
+            const element = document.getElementById(anchorId);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+        }
+      }
+    };
+
+    if (!window.location.hash || window.location.hash === '#/') {
+      window.location.hash = '#/about';
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+    
+    // Initial check for hash on load
+    handleHashChange();
+
+    // Reveal animations
     const observerOptions = {
-      threshold: 0.01, // Lower threshold for fast, reliable triggers
-      rootMargin: '0px 0px -50px 0px', // Trigger slightly before appearing
+      threshold: 0.01,
+      rootMargin: '0px 0px -50px 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -50,88 +73,105 @@ const App: React.FC = () => {
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach((el) => observer.observe(el));
 
-    // Scroll-aware dock visibility
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setShowDock(false);
-      } else {
-        setShowDock(true);
-      }
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
+      window.removeEventListener('hashchange', handleHashChange);
       observer.disconnect();
-      window.removeEventListener('scroll', handleScroll);
     };
+  }, [currentRoute]); // Re-run when route changes to catch new .reveal elements
+
+  const handleSendMessage = useCallback((content: string) => {
+    setMessages(prev => [...prev, { role: 'user', content }]);
+    setIsProcessing(true);
+    
+    // Simulate AI response
+    setTimeout(() => {
+      setMessages(prev => [...prev, { 
+        role: 'ai', 
+        content: "I've processed your query. As an AI assistant, I can help you explore Bao's technical ecosystem, from MLOps to high-performance frontend engineering. What specific details can I uncover for you?" 
+      }]);
+      setIsProcessing(false);
+    }, 1000);
   }, []);
 
+  const handleSelectTopic = useCallback((topic: string) => {
+    const topicResponses: any = {
+      experience: "Bao specializes in Data & Quality Engineering, with deep expertise in Python, SQL, and automated testing frameworks.",
+      skills: "Technical stack includes React 19, Tailwind 4.0, Python, and cloud-native MLOps architectures.",
+      projects: "From building indie tools with 10K+ users to internal enterprise platforms.",
+      testimonials: "Known for technical excellence and measurable business impact across diverse teams.",
+      contact: "You can book a call via Calendly or message Bao directly on LinkedIn!",
+    };
+
+    setMessages(prev => [
+      ...prev,
+      { role: 'user', content: `Tell me about ${topic}...` },
+      { role: 'ai', content: topicResponses[topic] || "How can I help you today?" }
+    ]);
+    
+    if (window.location.hash !== '#/chat') {
+      window.location.hash = '#/chat';
+    }
+  }, []);
+
+  const renderLandingContent = () => {
+    if (currentRoute.startsWith('#/about')) {
+      return (
+        <div className="landing-page-content">
+          <div id="about">
+            <LandingHero onStartChat={() => window.location.hash = '#/chat'} />
+          </div>
+          <div id="skills" className="reveal">
+            <Suspense fallback={<SectionLoader />}><Skills /></Suspense>
+          </div>
+          <div id="projects" className="reveal">
+            <Suspense fallback={<SectionLoader />}><Projects /></Suspense>
+          </div>
+          <div id="experience" className="reveal">
+            <Suspense fallback={<SectionLoader />}><Timeline /></Suspense>
+          </div>
+          <div id="testimonials" className="reveal">
+            <Suspense fallback={<SectionLoader />}><Testimonials /></Suspense>
+          </div>
+          <div id="contact" className="reveal">
+            <Suspense fallback={<SectionLoader />}><Contact /></Suspense>
+          </div>
+        </div>
+      );
+    }
+    
+    // Fallback for direct section access if needed, though they are now part of #/about
+    return <LandingHero onStartChat={() => window.location.hash = '#/chat'} />;
+  };
+
+  const isChatMode = currentRoute.startsWith('#/chat');
+
   return (
-    <div className="min-h-screen bg-[var(--color-dark)] relative overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--color-dark)] relative">
       <LiquidGrid />
-      <Header />
-
-      <main className="relative z-10">
-        <Hero
-          onSelectTopic={handleSelectTopic}
-          isChatOpen={isChatOpen}
-        />
-
-        <ChatAssistant
-          isOpen={isChatOpen}
-          setIsOpen={setIsChatOpen}
-          topic={activeTopic}
-        />
-
-        {/* Lazy Loaded Sections with stable reveal containers */}
-        <div id="skills" className="reveal min-h-[300px]">
-          <Suspense fallback={<SectionLoader />}>
-            <Skills />
-          </Suspense>
-        </div>
-        <div id="projects" className="reveal min-h-[300px]">
-          <Suspense fallback={<SectionLoader />}>
-            <Projects />
-          </Suspense>
-        </div>
-        <div id="experience" className="reveal min-h-[300px]">
-          <Suspense fallback={<SectionLoader />}>
-            <Timeline />
-          </Suspense>
-        </div>
-        <div id="testimonials" className="reveal min-h-[300px]">
-          <Suspense fallback={<SectionLoader />}>
-            <Testimonials />
-          </Suspense>
-        </div>
-        <div className="reveal min-h-[100px]">
-          <Suspense fallback={<SectionLoader />}>
-            <CallToAction />
-          </Suspense>
-        </div>
-        <div id="contact" className="reveal min-h-[300px]">
-          <Suspense fallback={<SectionLoader />}>
-            <Contact />
-          </Suspense>
-        </div>
-      </main>
-
-      <Footer />
-
-      {/* Persistent Navigation Dock - Scroll aware */}
-      <div className={`fixed bottom-0 left-0 right-0 z-[100] p-4 pointer-events-none transition-all duration-500 transform ${
-        showDock ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-      }`}>
-        <div className="container mx-auto flex justify-center pointer-events-auto">
-          <NavigationDock onSelectTopic={handleSelectTopic} />
-        </div>
-      </div>
+      
+      {isChatMode ? (
+        <ChatLayout onSelectTopic={handleSelectTopic}>
+          {messages.length === 0 ? (
+            <ChatHero
+              onSelectTopic={handleSelectTopic}
+              onSendMessage={handleSendMessage}
+            />
+          ) : (
+            <ChatAssistant 
+              messages={messages} 
+              onSendMessage={handleSendMessage}
+              isProcessing={isProcessing}
+            />
+          )}
+        </ChatLayout>
+      ) : (
+        <LandingLayout>
+          {renderLandingContent()}
+        </LandingLayout>
+      )}
     </div>
   );
 };
 
 export default App;
+

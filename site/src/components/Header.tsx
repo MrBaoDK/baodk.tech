@@ -29,20 +29,23 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const currentHash = window.location.hash;
+  const isChatMode = currentHash.startsWith('#/chat');
+
   const navItems = [
-    { href: '#about', label: 'About', id: 'about' },
-    { href: '#skills', label: 'Skills', id: 'skills' },
-    { href: '#projects', label: 'Projects', id: 'projects' },
-    { href: '#experience', label: 'Experience', id: 'experience' },
-    { href: '#testimonials', label: 'Testimonials', id: 'testimonials' },
+    { href: '#/about#about', label: 'About', id: 'about' },
+    { href: '#/about#skills', label: 'Skills', id: 'skills' },
+    { href: '#/about#projects', label: 'Projects', id: 'projects' },
+    { href: '#/about#experience', label: 'Experience', id: 'experience' },
+    { href: '#/about#testimonials', label: 'Testimonials', id: 'testimonials' },
     { href: '/blog', label: 'Blog', id: 'blog' },
     { href: '/mini-games', label: 'Mini Games', id: 'mini-games' }
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? 'bg-black/40 backdrop-blur-md py-1 border-b border-white/5 shadow-2xl'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || isMenuOpen
+        ? 'bg-black/80 backdrop-blur-xl py-4 border-b border-white/10 shadow-2xl'
         : 'bg-transparent py-8'
         }`}
     >
@@ -95,7 +98,7 @@ const Header: React.FC = () => {
 
           {/* Professional CTA */}
           <a
-            href="#contact"
+            href="#/about#contact"
             className="hidden md:flex items-center gap-2 px-6 py-1 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline"
           >
             Hire Me
@@ -114,21 +117,21 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4 border-t border-[#374151] mt-4">
+          <nav className="md:hidden pb-10 border-t border-white/10 mt-6 animate-in fade-in slide-in-from-top-4 duration-300">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="block py-3 text-white hover:text-[var(--color-dark)] transition-colors no-underline"
                 onClick={() => setIsMenuOpen(false)}
+                className="block py-3 text-white hover:text-[var(--color-dark)] transition-colors no-underline"
               >
                 {item.label}
               </a>
             ))}
             <a
-              href="#contact"
-              className="btn-primary btn-lg mt-4 w-full no-underline"
+              href="#/about#contact"
               onClick={() => setIsMenuOpen(false)}
+              className="btn-primary btn-lg mt-4 w-full no-underline text-center flex items-center justify-center py-3"
             >
               Contact Me
             </a>

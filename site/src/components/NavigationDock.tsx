@@ -14,7 +14,7 @@ interface NavigationDockProps {
 
 const NavigationDock: React.FC<NavigationDockProps> = ({ onSelectTopic }) => {
   return (
-    <div className="w-full max-w-4xl mx-auto px-2 pb-6 md:pb-16 transition-all duration-500">
+    <div className="w-full max-w-4xl mx-auto px-2 pb-4 md:pb-6 transition-all duration-500">
       <div className="flex overflow-x-auto md:grid md:grid-cols-5 gap-2 md:gap-4 hide-scrollbar snap-x snap-mandatory px-4 -mx-4 md:px-0 md:mx-0">
         {navItems.map((item) => (
           <button
