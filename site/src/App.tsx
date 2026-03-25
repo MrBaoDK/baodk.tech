@@ -52,7 +52,7 @@ const App: React.FC = () => {
     }
 
     window.addEventListener('hashchange', handleHashChange);
-    
+
     // Initial check for hash on load
     handleHashChange();
 
@@ -82,18 +82,22 @@ const App: React.FC = () => {
   const handleSendMessage = useCallback((content: string) => {
     setMessages(prev => [...prev, { role: 'user', content }]);
     setIsProcessing(true);
-    
+
     // Simulate AI response
     setTimeout(() => {
-      setMessages(prev => [...prev, { 
-        role: 'ai', 
-        content: "I've processed your query. As an AI assistant, I can help you explore Bao's technical ecosystem, from MLOps to high-performance frontend engineering. What specific details can I uncover for you?" 
+      setMessages(prev => [...prev, {
+        role: 'ai',
+        content: "I've processed your query. As an AI assistant, I can help you explore Bao's technical ecosystem, from MLOps to high-performance frontend engineering. What specific details can I uncover for you?"
       }]);
       setIsProcessing(false);
     }, 1000);
   }, []);
 
   const handleSelectTopic = useCallback((topic: string) => {
+    if (topic == "contact") {
+      window.location.hash = '#/about#contact';
+      return;
+    }
     const topicResponses: any = {
       experience: "Bao specializes in Data & Quality Engineering, with deep expertise in Python, SQL, and automated testing frameworks.",
       skills: "Technical stack includes React 19, Tailwind 4.0, Python, and cloud-native MLOps architectures.",
@@ -107,7 +111,7 @@ const App: React.FC = () => {
       { role: 'user', content: `Tell me about ${topic}...` },
       { role: 'ai', content: topicResponses[topic] || "How can I help you today?" }
     ]);
-    
+
     if (window.location.hash !== '#/chat') {
       window.location.hash = '#/chat';
     }
@@ -138,7 +142,7 @@ const App: React.FC = () => {
         </div>
       );
     }
-    
+
     // Fallback for direct section access if needed, though they are now part of #/about
     return <LandingHero onStartChat={() => window.location.hash = '#/chat'} />;
   };
@@ -148,7 +152,7 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-[var(--color-dark)] relative">
       <LiquidGrid />
-      
+
       {isChatMode ? (
         <ChatLayout onSelectTopic={handleSelectTopic}>
           {messages.length === 0 ? (
@@ -157,8 +161,8 @@ const App: React.FC = () => {
               onSendMessage={handleSendMessage}
             />
           ) : (
-            <ChatAssistant 
-              messages={messages} 
+            <ChatAssistant
+              messages={messages}
               onSendMessage={handleSendMessage}
               isProcessing={isProcessing}
             />

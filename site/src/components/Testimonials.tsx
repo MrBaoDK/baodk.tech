@@ -12,7 +12,7 @@ const Testimonials: React.FC = () => {
             Strategic <span className="text-[var(--color-primary)]">Impact</span>
           </h2>
           <p className="text-lg text-white/50 font-medium text-center">
-            Trusted by industry leaders and recognized for technical excellence 
+            Trusted by industry leaders and recognized for technical excellence
             in AI engineering and high-performance system design.
           </p>
         </div>
@@ -22,7 +22,7 @@ const Testimonials: React.FC = () => {
           {clientTestimonials.map((testimonial, index) => (
             <div key={index} className="card group relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 text-6xl text-white/5 font-serif pointer-events-none">"</div>
-              
+
               <p className="text-white/80 italic leading-relaxed mb-8 relative z-10 font-medium">
                 {testimonial.content}
               </p>
@@ -72,7 +72,7 @@ const Testimonials: React.FC = () => {
           <p className="text-xl text-white/40 mb-10 font-medium">
             Ready to join these satisfied partners?
           </p>
-          <a href="#contact" className="px-12 py-5 rounded-full bg-[var(--color-primary)] text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-[var(--color-primary)]/40 no-underline inline-block">
+          <a href="#/about#contact" className="px-12 py-5 rounded-full bg-[var(--color-primary)] text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-[var(--color-primary)]/40 no-underline inline-block">
             Start Your Project Today
           </a>
         </div>

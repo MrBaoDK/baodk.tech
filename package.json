@@ -6,7 +6,7 @@
     "dev": "pnpm --filter @mrbaodk/site start",
     "build": "pnpm --filter @mrbaodk/site build",
     "preview": "pnpm --filter @mrbaodk/site preview",
-    "deploy": "pnpm --filter @mrbaodk/site deploy"
+    "deploy": "pnpm --filter @mrbaodk/site run deploy"
   },
   "packageManager": "pnpm@10.30.0",
   "repository": {

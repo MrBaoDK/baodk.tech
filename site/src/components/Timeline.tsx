@@ -84,7 +84,7 @@ const Timeline: React.FC = () => {
           <p className="text-xl text-white/40 mb-8 font-medium">
             Ready to add your success story to this timeline?
           </p>
-          <a href="#contact" className="px-8 py-4 rounded-full border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-bold uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all no-underline">
+          <a href="#/about#contact" className="px-8 py-4 rounded-full border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-bold uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all no-underline">
             Let's Scale Together
           </a>
         </div>
