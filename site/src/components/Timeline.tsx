@@ -12,7 +12,7 @@ const Timeline: React.FC = () => {
             Professional <span className="text-[var(--color-primary)]">Journey</span>
           </h2>
           <p className="text-lg text-white/50 font-medium">
-            A career dedicated to excellence in data engineering, quality assurance, and AI integration. 
+            A career dedicated to excellence in data engineering, quality assurance, and AI integration.
             From enterprise systems to cutting-edge AI automation.
           </p>
         </div>
@@ -21,7 +21,7 @@ const Timeline: React.FC = () => {
         <div className="max-w-5xl mx-auto relative px-4 md:px-0">
           {/* Main Timeline Path */}
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--color-primary)]/0 via-[var(--color-primary)]/50 to-[var(--color-primary)]/0 -translate-x-1/2 hidden md:block" />
-          
+
           <div className="space-y-20">
             {careerTimeline.map((item, index) => (
               <div key={index} className={`relative flex flex-col md:flex-row items-center justify-between ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>

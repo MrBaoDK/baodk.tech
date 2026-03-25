@@ -10,8 +10,8 @@ const Footer: React.FC = () => {
           {/* Brand & Mission */}
           <div className="lg:col-span-2 space-y-8">
             <a href="/" className="inline-flex items-center gap-3 no-underline group">
-              <span className="w-10 h-10 bg-white/5 backdrop-blur-sm border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/20">
-                <img src="/logo/logo_head.svg" alt="Bao logo" className="w-6 h-6 drop-shadow-[0_0_4px_rgba(255,255,255,0.2)]" />
+              <span className="w-10 h-10 backdrop-blur-sm flex items-center justify-center transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/20 rounded-full">
+                <img src="/logo/logo_head.svg" alt="Bao logo" className="w-6 h-6 " />
               </span>
               <span className="text-white font-black text-xl tracking-tighter uppercase">
                 Bao <span className="text-[var(--color-primary)]">DK</span>

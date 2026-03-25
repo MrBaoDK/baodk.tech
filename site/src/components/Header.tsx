@@ -42,7 +42,7 @@ const Header: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-        ? 'bg-black/40 backdrop-blur-md py-3 border-b border-white/5 shadow-2xl'
+        ? 'bg-black/40 backdrop-blur-md py-1 border-b border-white/5 shadow-2xl'
         : 'bg-transparent py-8'
         }`}
     >
@@ -56,16 +56,16 @@ const Header: React.FC = () => {
           >
             {/* Main logo: large, slight overlap */}
             <span
-              className="rounded-full bg-white/5 backdrop-blur-md inline-flex items-center justify-center border border-white/10 shadow-2xl w-14 h-14 -mb-2.5 group"
+              className="inline-flex items-center justify-center shadow-2xl w-14 h-14 -mb-2.5 group"
             >
               <img
                 src="/logo/logo_head.svg"
                 alt="Bao DK logo"
-                width={50}
-                height={50}
+                width={84}
+                height={84}
                 loading="eager"
                 decoding="async"
-                className="block drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] transition-transform duration-500 group-hover:scale-110"
+                className="block transition-transform duration-500 group-hover:scale-110"
               />
             </span>
 
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
           {/* Professional CTA */}
           <a
             href="#contact"
-            className="hidden md:flex items-center gap-2 px-6 py-2.5 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline"
+            className="hidden md:flex items-center gap-2 px-6 py-1 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline"
           >
             Hire Me
             <span className="material-symbols-outlined text-sm">work</span>
