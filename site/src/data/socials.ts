@@ -9,21 +9,25 @@ export const SOCIALS: SocialData = {
       href: "https://github.com/mrbaodk",
       label: "GitHub",
       icon: "github",
+      labels: ["digital-network"]
    },
    LINKEDIN: {
-      href: "https://linkedin.com/in/mrbaodk",
+      href: "https://linkedin.com/in/baodk",
       label: "LinkedIn",
       icon: "linkedin",
+      labels: ["digital-network"]
    },
    TWITTER: {
-      href: "https://twitter.com/mrbaodk",
-      label: "Twitter",
-      icon: "twitter",
+      href: "https://x.com/mrbaodk",
+      label: "X",
+      icon: "x",
+      labels: ["digital-network"]
    },
    FACEBOOK: {
       href: "https://facebook.com/mrbaodk",
       label: "Facebook",
       icon: "facebook",
+      labels: ["digital-network"]
    },
    INSTAGRAM: {
       href: "https://instagram.com/mrbaodk",

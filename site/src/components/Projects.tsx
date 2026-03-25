@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
     : projects.filter(project => project.category === selectedCategory);
 
   return (
-    <section id="projects" className="section bg-[var(--color-background)] relative">
+    <section id="projects" className="section relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="section-header max-w-3xl mx-auto mb-16">

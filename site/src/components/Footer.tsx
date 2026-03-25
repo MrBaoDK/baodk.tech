@@ -7,11 +7,20 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ simple = false }) => {
+
+  const navItems = [
+    { href: '#/about#about', label: 'About', id: 'about' },
+    { href: '#/about#projects', label: 'Projects', id: 'projects' },
+    { href: '#/about#experience', label: 'Experience', id: 'experience' },
+    { href: '/blog', label: 'Blog', id: 'blog' },
+    { href: '/mini-games', label: 'Mini Games', id: 'mini-games' }
+  ];
+
   return (
-    <footer className={`bg-[var(--color-background)] border-t border-white/5 ${simple ? 'py-12' : 'py-24'}`}>
+    <footer className={`bg-[var(--color-background)] border-t border-white/5 ${simple ? 'py-12' : 'pt-24 pb-12'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {!simple && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8 mb-12">
             {/* Brand & Mission */}
             <div className="lg:col-span-2 space-y-8">
               <a href="/" className="inline-flex items-center gap-3 no-underline group">
@@ -41,10 +50,10 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary)] mb-8">Navigation</h4>
               <ul className="space-y-4">
-                {['About', 'Experience', 'Projects', 'Testimonials'].map((item) => (
-                  <li key={item}>
-                    <a href={`#${item.toLowerCase()}`} className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline transition-colors focus:outline-none">
-                      {item}
+                {navItems.map((item) => (
+                  <li key={item.id}>
+                    <a href={item.href} className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline transition-colors focus:outline-none">
+                      {item.label}
                     </a>
                   </li>
                 ))}

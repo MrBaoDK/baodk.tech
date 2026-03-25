@@ -29,17 +29,13 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const currentHash = window.location.hash;
-  const isChatMode = currentHash.startsWith('#/chat');
-
   const navItems = [
     { href: '#/about#about', label: 'About', id: 'about' },
     { href: '#/about#skills', label: 'Skills', id: 'skills' },
     { href: '#/about#projects', label: 'Projects', id: 'projects' },
     { href: '#/about#experience', label: 'Experience', id: 'experience' },
     { href: '#/about#testimonials', label: 'Testimonials', id: 'testimonials' },
-    { href: '/blog', label: 'Blog', id: 'blog' },
-    { href: '/mini-games', label: 'Mini Games', id: 'mini-games' }
+    { href: '#/chat', label: 'Ask AI', id: 'ask-ai' }
   ];
 
   return (

@@ -45,6 +45,7 @@ export interface NavItem {
 
 export interface SocialItem extends NavItem {
   icon: string;
+  labels?: string[];
 }
 
 export interface ContactInfo {

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { SOCIALS } from '@baodk-site/data/socials';
+
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -7,6 +9,8 @@ const Contact: React.FC = () => {
     company: '',
     message: ''
   });
+
+  const digitalNetworkSocials = Object.values(SOCIALS).filter((social) => social.labels?.includes('digital-network'));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +26,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="section bg-[var(--color-background)]">
+    <section id="contact" className="section">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="section-header max-w-3xl mx-auto mb-20 text-center">
@@ -30,7 +34,7 @@ const Contact: React.FC = () => {
               Let's <span className="text-[var(--color-primary)]">Connect</span>
             </h2>
             <p className="text-xl text-white/40 font-medium">
-              Ready to discuss your next breakthrough? Reach out for collaborations 
+              Ready to discuss your next breakthrough? Reach out for collaborations
               on AI engineering, MLOps, or high-performance systems.
             </p>
           </div>
@@ -38,8 +42,8 @@ const Contact: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
             {/* Contact Form */}
             <div className="card !p-8 md:!p-12 relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary)]/5 blur-3xl pointer-events-none" />
-              
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary)]/5 blur-3xl pointer-events-none" />
+
               <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
@@ -155,10 +159,10 @@ const Contact: React.FC = () => {
               <div className="pt-12 border-t border-white/5">
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20 mb-6">Digital Networks</p>
                 <div className="flex gap-4">
-                  {['LinkedIn', 'GitHub', 'X'].map((social) => (
-                    <button key={social} className="px-6 py-3 rounded-xl bg-white/5 border border-white/5 text-white/40 font-bold text-[10px] uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all">
-                      {social}
-                    </button>
+                  {digitalNetworkSocials.map((social) => (
+                    <a key={social.icon} href={social.href} className="px-6 py-3 rounded-xl bg-white/5 border border-white/5 text-white/40 font-bold text-[10px] uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all">
+                      {social.label}
+                    </a>
                   ))}
                 </div>
               </div>

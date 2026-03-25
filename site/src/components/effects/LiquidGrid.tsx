@@ -58,27 +58,28 @@ const LiquidGrid: React.FC = () => {
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
-      
+
       const mouse = mouseRef.current;
       const maxDist = 120;
-      
-      ctx.fillStyle = 'rgba(233, 30, 99, 0.15)'; // Stitch pink-red with low alpha
 
       dots.forEach((dot) => {
         const dx = mouse.x - dot.ox;
         const dy = mouse.y - dot.oy;
         const dist = Math.sqrt(dx * dx + dy * dy);
+        let alpha = 0.18; // Base visibility
 
         if (dist < maxDist) {
           const angle = Math.atan2(dy, dx);
           const force = (maxDist - dist) / maxDist;
           dot.x = dot.ox - Math.cos(angle) * force * 20;
           dot.y = dot.oy - Math.sin(angle) * force * 20;
+          alpha += force * 0.8; // Increase brightness near mouse
         } else {
           dot.x += (dot.ox - dot.x) * 0.1;
           dot.y += (dot.oy - dot.y) * 0.1;
         }
 
+        ctx.fillStyle = `rgba(233, 30, 96, ${alpha})`;
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, 1, 0, Math.PI * 2);
         ctx.fill();
@@ -99,7 +100,7 @@ const LiquidGrid: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-0 pointer-events-none"
+      className="fixed inset-0 z-0 pointer-events-none"
       style={{ opacity: 0.8 }}
     />
   );

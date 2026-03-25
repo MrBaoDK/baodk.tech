@@ -4,7 +4,7 @@ import { skills } from '@baodk-site/data/skills';
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="section bg-[var(--color-background)]">
+    <section id="skills" className="section">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="section-header max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
