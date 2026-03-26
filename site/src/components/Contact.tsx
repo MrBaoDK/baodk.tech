@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { SOCIALS } from '@baodk-site/data/socials';
 import SocialLinks from './SocialLinks';
+import EmailProviderModal from './EmailProviderModal';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,10 +12,11 @@ const Contact: React.FC = () => {
     message: ''
   });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Thank you ${formData.name}! I'll get back to you within 24 hours.`);
-    setFormData({ name: '', email: '', company: '', message: '' });
+    setIsModalOpen(true);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -25,7 +27,12 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="section">
+    <section id="contact" className="section relative">
+      <EmailProviderModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        formData={formData} 
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="section-header max-w-3xl mx-auto mb-20 text-center">
