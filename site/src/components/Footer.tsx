@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SOCIALS } from '@baodk-site/data/socials';
+import SocialLinks from './SocialLinks';
 
 interface FooterProps {
   simple?: boolean;
@@ -56,15 +57,7 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
                 Architecting high-performance AI systems and scalable data infrastructure.
                 Bridging the gap between code and business impact.
               </p>
-              <div className="flex gap-4">
-                {['LinkedIn', 'GitHub', 'X'].map((social) => (
-                  <button key={social} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:bg-[var(--color-primary)]/10 hover:text-white transition-all">
-                    <span className="material-symbols-outlined text-xl">
-                      {social === 'LinkedIn' ? 'work' : social === 'GitHub' ? 'code' : 'share'}
-                    </span>
-                  </button>
-                ))}
-              </div>
+              <SocialLinks label="primary" variant="icon" />
             </div>
 
             {/* Quick Navigation */}

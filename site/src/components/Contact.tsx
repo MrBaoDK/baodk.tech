@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { SOCIALS } from '@baodk-site/data/socials';
+import SocialLinks from './SocialLinks';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +10,6 @@ const Contact: React.FC = () => {
     company: '',
     message: ''
   });
-
-  const digitalNetworkSocials = Object.values(SOCIALS).filter((social) => social.labels?.includes('digital-network'));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,7 +130,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20 mb-1">Email</p>
-                    <p className="text-white font-bold text-lg">mrbaodk@hotmail.com</p>
+                    <p className="text-white font-bold text-lg">{SOCIALS.EMAIL.label}</p>
                   </div>
                 </div>
 
@@ -141,7 +140,7 @@ const Contact: React.FC = () => {
                   </div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20 mb-1">Base</p>
-                    <p className="text-white font-bold text-lg">Ho Chi Minh City, Vietnam</p>
+                    <p className="text-white font-bold text-lg">{SOCIALS.ADDRESS.label}</p>
                   </div>
                 </div>
 
@@ -158,13 +157,7 @@ const Contact: React.FC = () => {
 
               <div className="pt-12 border-t border-white/5">
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/20 mb-6">Digital Networks</p>
-                <div className="flex gap-4">
-                  {digitalNetworkSocials.map((social) => (
-                    <a key={social.icon} href={social.href} className="px-6 py-3 rounded-xl bg-white/5 border border-white/5 text-white/40 font-bold text-[10px] uppercase tracking-widest hover:bg-white/10 hover:text-white transition-all">
-                      {social.label}
-                    </a>
-                  ))}
-                </div>
+                <SocialLinks label="digital-network" variant="pill" />
               </div>
             </div>
           </div>

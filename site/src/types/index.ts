@@ -46,6 +46,7 @@ export interface NavItem {
 export interface SocialItem extends NavItem {
   icon: string;
   labels?: string[];
+  order?: number;
 }
 
 export interface ContactInfo {

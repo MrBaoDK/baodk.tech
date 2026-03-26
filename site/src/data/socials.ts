@@ -8,23 +8,24 @@ export const SOCIALS: SocialData = {
    GITHUB: {
       href: "https://github.com/mrbaodk",
       label: "GitHub",
-      icon: "github",
-      labels: ["digital-network"]
+      icon: "code",
+      labels: ["digital-network", "primary"],
+      order: 2
    },
    LINKEDIN: {
       href: "https://linkedin.com/in/baodk",
       label: "LinkedIn",
-      icon: "linkedin",
-      labels: ["digital-network"]
+      icon: "work",
+      labels: ["digital-network", "primary"],
+      order: 1
    },
    TWITTER: {
       href: "https://x.com/mrbaodk",
       label: "X",
-      icon: "x",
-      labels: ["digital-network"]
+      icon: "share",
    },
    FACEBOOK: {
-      href: "https://facebook.com/mrbaodk",
+      href: "https://facebook.com/baodk.tech",
       label: "Facebook",
       icon: "facebook",
       labels: ["digital-network"]
@@ -38,30 +39,41 @@ export const SOCIALS: SocialData = {
       href: "https://tiktok.com/mrbaodk",
       label: "Tiktok",
       icon: "tiktok",
+      labels: ["digital-network"]
    },
    WEBSITE: {
       href: "https://baodk.tech",
       label: "BAODK.TECH",
-      icon: "website",
+      icon: "language",
+   },
+   GDEV: {
+      href: "https://g.dev/baodk",
+      label: "Google Developer",
+      icon: "g_dev",
+      labels: ["digital-network"]
    },
    PHONE: {
       href: "tel:+84898678905",
       label: "+84 (898) 6789-05",
-      icon: "phone",
+      icon: "call",
+      labels: ["primary"],
+      order: 4
    },
    EMAIL: {
       href: "mailto:mrbaodk@hotmail.com",
       label: "mrbaodk@hotmail.com",
-      icon: "email",
+      icon: "mail",
    },
    ADDRESS: {
       href: "https://maps.google.com/?q=Ho+Chi+Minh+City",
       label: "Ho Chi Minh City, Vietnam",
-      icon: "address",
+      icon: "location_on",
    },
    CREDLY: {
       href: "https://credly.com/users/baodk/badges",
       label: "Credly",
-      icon: "credly",
+      icon: "workspace_premium",
+      labels: ["primary"],
+      order: 3
    },
 };
