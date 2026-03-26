@@ -2,54 +2,66 @@ import type { Project } from '@baodk-site/types';
 
 export const projects: Project[] = [
   {
-    title: 'CDGA – AI‑Assisted Document Gap Analysis',
+    title: 'CDGA - AI-Assisted Document Gap Analysis',
     description:
-      'End‑to‑end system for automated document classification, OCR + LLM parsing, markdown processing, dashboards, and notifications.',
+      'End-to-end AI workflow integrating OCR, LLM parsing, classification, markdown processing, dashboards, and automated notifications.',
     technologies: ['Python', 'FastAPI', 'LangChain', 'OpenAI', 'PostgreSQL', 'Redis', 'Docker'],
-    impact: 'Reduced manual document handling by 60%; accelerated compliance reviews',
+    impact: 'Reduced manual document handling by 60%; accelerated compliance reviews.',
     category: 'AI/Automation',
   },
   {
-    title: 'NCM Helper – Quality Findings & Escalation',
+    title: 'NCM Helper - End-to-End Quality Tracking & Escalation System',
     description:
-      'Standardized workflows for findings across workcells with aging reports, escalation flows, and real‑time monitoring.',
-    technologies: ['React', 'FastAPI', 'PostgreSQL', 'Azure DevOps', 'GitHub Actions'],
-    impact: 'Cut manual errors and improved traceability by 50%; real‑time visibility',
-    category: 'Quality Engineering',
+      'Centralized NCM (Non-Conformance Material) workflow platform combining standardized findings, escalation rules, trend analysis, and real-time visibility using both custom web app and Power Platform components.',
+    technologies: ['FastAPI', 'PostgreSQL', 'Azure DevOps', 'GitHub Actions', 'Power Apps', 'Power Automate', 'Power BI', 'SQL Server', 'Power Query'],
+    impact:
+      'Improved traceability by 80%; eliminated Excel-based tracking; reduced manual errors by 50% through unified digital workflow.',
+    category: 'Engineering Tools',
   },
   {
-    title: 'FAIR Reaction – FAI Tracking Automation',
+    title: 'FAIR Reaction - Automated FAI & Build Plan Tracking',
     description:
-      'MES‑integrated triggers, alerts, and dashboards to proactively track First Article Inspection progress.',
-    technologies: ['Python', 'MES Integration', 'Grafana', 'TimescaleDB', 'Kafka'],
-    impact: 'Improved FAI timeliness by 50%; reduced inspection delays',
-    category: 'Manufacturing Analytics',
+      'Unified automation system combining MES-based triggers, build plan validation, RegEx matching, alerts, and dashboards to proactively track First Article Inspection (FAI) progress.',
+    technologies: ['Python', 'MES Integration', 'Grafana', 'TimescaleDB', 'Kafka', 'Pandas', 'Postgres', 'Power Automate', 'Power BI', 'RegEx'],
+    impact:
+      'Improved FAI timeliness by 50%; reduced inspection delays through proactive build plan notifications and automated monitoring.',
+    category: 'Analytics',
   },
   {
-    title: 'Quality DL Evaluation – Monthly Performance System',
+    title: 'Direct-Labor Performance Evaluation',
     description:
-      'Standardized evaluation platform using six criteria with visual quizzes to improve engagement and recall.',
-    technologies: ['React', 'FastAPI', 'PostgreSQL', 'Redis'],
-    impact: 'Increased evaluation efficiency by 40%; better scoring consistency',
-    category: 'People Systems',
+      'Unified performance evaluation platform consolidating HR, attendance, productivity, and behavioral assessment into a single analytic model with visual quizzes, automated scoring, and near‑real‑time dashboards.',
+    technologies: [
+      'Power BI', 'DAX', 'Azure SQL', 'Power Automate', 'Power Query',
+      'React', 'FastAPI', 'PostgreSQL', 'Redis'
+    ],
+    impact:
+      'Reduced evaluation time by 90%; improved scoring consistency by 40%; enabled granular insights by line, shift, and role.',
+    category: 'Analytics',
   },
   {
-    title: 'Common Data – Employee Data Crawler (Non‑PII)',
+    title: 'Common Data - Employee Data Crawler (Non-PII)',
     description:
-      'Model for extracting and normalizing non‑PII employee data to support operational systems and analytics.',
+      'Automated ingestion and normalization of non-PII employee data supporting analytics, operations, and cross-system integration.',
     technologies: ['Python', 'Airflow', 'dbt', 'PostgreSQL', 'Docker'],
-    impact: 'Reduced data prep time by 50%; improved data clarity and availability',
+    impact: 'Reduced data preparation time by 50%; improved clarity and availability.',
     category: 'Data Engineering',
   },
   {
-    title: 'Enterprise Data Platform – Real‑time + Batch',
+    title: 'NXT Verification App',
     description:
-      'Reliable ingestion, transformation, and monitoring for cross‑system analytics with auto‑healing jobs and observability.',
-    technologies: ['Airflow', 'Spark', 'Kafka', 'S3', 'Python', 'dbt'],
-    impact: '2M+ records/day at 99.9% uptime; <5 min recovery time',
-    category: 'Data Engineering',
+      'Real-time detection system for configuration changes, parameter variations, and automated engineering checklists.',
+    technologies: ['Python', 'Mendix', 'Postgres', 'Power BI', 'Kubernetes', 'RegEx'],
+    impact: 'Runner-up in Delivery Best Practice Award; significantly reduced rework costs.',
+    category: 'Process Automation',
   },
+  {
+    title: 'BOM Comparison Tool',
+    description:
+      'Automated BOM revision comparison highlighting added/removed/updated parts to accelerate engineering review.',
+    technologies: ['Power BI', 'DAX', 'Power Query', 'Data Modeling', 'ERP Integration'],
+    impact: 'Reduced manual comparison time and improved revision tracking accuracy.',
+    category: 'Engineering Tools',
+  }
 ];
 
-// Export with legacy name for backward compatibility
-export const sampleProjects = projects;

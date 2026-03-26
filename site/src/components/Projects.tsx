@@ -5,7 +5,7 @@ import { projects } from '@baodk-site/data/projects';
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = ['All', 'AI & Analytics', 'Data Engineering', 'Quality Engineering', 'DevOps', 'AI Integration', 'Full Stack'];
+  const categories = ['All', 'Data Engineering', 'Analytics', 'Process Automation', 'AI/Automation', 'Engineering Tools'];
 
   const filteredProjects = selectedCategory === 'All'
     ? projects
