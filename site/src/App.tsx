@@ -27,6 +27,26 @@ const App: React.FC = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  const scrollToSection = useCallback((id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Update hash without triggering hashchange event
+      const newHash = `#/about#${id}`;
+      if (window.location.hash !== newHash) {
+        window.history.replaceState(null, '', newHash);
+      }
+    }
+  }, []);
+
   // Hash Routing & Animation Logic
   useEffect(() => {
     const handleHashChange = () => {
@@ -37,13 +57,13 @@ const App: React.FC = () => {
       if (hash.includes('#', 2)) {
         const anchorId = hash.split('#').pop();
         if (anchorId) {
+          // Use setTimeout to ensure lazy elements are rendered or layout is stable
           setTimeout(() => {
-            const element = document.getElementById(anchorId);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
+            scrollToSection(anchorId);
           }, 100);
         }
+      } else if (hash === '#/about') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
 
@@ -56,28 +76,38 @@ const App: React.FC = () => {
     // Initial check for hash on load
     handleHashChange();
 
-    // Reveal animations
+    // Reveal animations & Hash synchronization on scroll
     const observerOptions = {
-      threshold: 0.01,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.2,
+      rootMargin: '-100px 0px -20% 0px',
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+          
+          // Update hash as user scrolls through sections
+          if (window.location.hash.startsWith('#/about')) {
+            const id = entry.target.id;
+            if (id && id !== 'about' && id !== 'hero') {
+               window.history.replaceState(null, '', `#/about#${id}`);
+            } else if (id === 'about' || id === 'hero') {
+               window.history.replaceState(null, '', `#/about`);
+            }
+          }
         }
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal');
+    const revealElements = document.querySelectorAll('.reveal, #about');
     revealElements.forEach((el) => observer.observe(el));
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
       observer.disconnect();
     };
-  }, [currentRoute]); // Re-run when route changes to catch new .reveal elements
+  }, [currentRoute, scrollToSection]); // Re-run when route changes to catch new elements
 
   const handleSendMessage = useCallback((content: string) => {
     setMessages(prev => [...prev, { role: 'user', content }]);
@@ -178,4 +208,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-

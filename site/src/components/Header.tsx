@@ -38,6 +38,28 @@ const Header: React.FC = () => {
     { href: '#/chat', label: 'Ask AI', id: 'ask-ai' }
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (id === 'ask-ai') return;
+
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Update hash manually to match App.tsx's behavior
+      const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
+      window.history.replaceState(null, '', newHash);
+      setActiveSection(id);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || isMenuOpen
@@ -49,7 +71,7 @@ const Header: React.FC = () => {
         <div className="flex justify-between items-center">
           {/* Logo/Brand */}
           <a
-            href={SOCIALS.WEBSITE.href}
+            href="/"
             aria-label="Bao DK - Home"
             className="flex items-center gap-2 md:gap-4 no-underline relative"
           >
@@ -84,6 +106,7 @@ const Header: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.id)}
                 className={`text-sm font-bold transition-all duration-300 no-underline uppercase tracking-widest hover:text-[var(--color-primary)] ${activeSection === item.id ? 'text-[var(--color-primary)]' : 'text-white/70'
                   }`}
               >
@@ -95,6 +118,7 @@ const Header: React.FC = () => {
           {/* Professional CTA */}
           <a
             href="#/about#contact"
+            onClick={(e) => handleNavClick(e, 'contact')}
             className="hidden md:flex items-center gap-2 px-6 py-1 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline"
           >
             Hire Me
@@ -118,7 +142,10 @@ const Header: React.FC = () => {
               <a
                 key={item.href}
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  setIsMenuOpen(false);
+                  handleNavClick(e, item.id);
+                }}
                 className="block py-3 text-white hover:text-[var(--color-dark)] transition-colors no-underline"
               >
                 {item.label}
@@ -126,7 +153,10 @@ const Header: React.FC = () => {
             ))}
             <a
               href="#/about#contact"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={(e) => {
+                setIsMenuOpen(false);
+                handleNavClick(e, 'contact');
+              }}
               className="btn-primary btn-lg mt-4 w-full no-underline text-center flex items-center justify-center py-3"
             >
               Contact Me

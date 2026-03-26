@@ -16,6 +16,27 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
     { href: '/mini-games', label: 'Mini Games', id: 'mini-games' }
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (id === 'blog' || id === 'mini-games') return;
+
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 100;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      // Update hash manually 
+      const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
+      window.history.replaceState(null, '', newHash);
+    }
+  };
+
   return (
     <footer className={`bg-[var(--color-background)] border-t border-white/5 ${simple ? 'py-12' : 'pt-24 pb-12'}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,7 +44,7 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8 mb-12">
             {/* Brand & Mission */}
             <div className="lg:col-span-2 space-y-8">
-              <a href="/" className="inline-flex items-center gap-3 no-underline group">
+              <a href={SOCIALS.WEBSITE.href} className="inline-flex items-center gap-3 no-underline group">
                 <span className="w-10 h-10 backdrop-blur-sm flex items-center justify-center transition-all duration-500 group-hover:bg-white/10 group-hover:border-white/20 rounded-full">
                   <img src="/logo/logo_head.svg" alt="Bao logo" className="w-10 h-10 " />
                 </span>
@@ -52,7 +73,11 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
               <ul className="space-y-4">
                 {navItems.map((item) => (
                   <li key={item.id}>
-                    <a href={item.href} className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline transition-colors focus:outline-none">
+                    <a
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.id)}
+                      className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline transition-colors focus:outline-none"
+                    >
                       {item.label}
                     </a>
                   </li>
