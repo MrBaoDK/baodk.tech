@@ -41,10 +41,13 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
         });
 
         // Update hash manually 
-        const newHash = id === 'about' ? '/#/about' : `/#/about#${id}`;
+        const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
         window.history.replaceState(null, '', newHash);
-        return;
+      } else {
+        // Element not in DOM, navigate to hash route to trigger route change
+        window.location.href = href;
       }
+      return;
     }
 
     // Local paths (like /blog or /games)

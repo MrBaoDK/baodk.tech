@@ -125,7 +125,7 @@ const App: React.FC = () => {
   }, []);
 
   const handleSelectTopic = useCallback((topic: string) => {
-    if (topic == "contact") {
+    if (topic === 'contact') {
       window.location.hash = '#/about#contact';
       return;
     }

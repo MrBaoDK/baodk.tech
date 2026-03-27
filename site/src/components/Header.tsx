@@ -68,9 +68,12 @@ const Header: React.FC = () => {
         const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
         window.history.replaceState(null, '', newHash);
         setActiveSection(id);
+      } else {
+        // Element not in DOM (e.g. navigating from chat mode to a landing section)
+        window.location.href = href;
       }
     }
-    // Local paths or external links: let browser navigate naturally
+    // Local paths: let browser navigate naturally
   };
 
   return (
@@ -130,7 +133,7 @@ const Header: React.FC = () => {
 
           {/* Professional CTA */}
           <a
-            href="#/about#contact"
+            href="/#/about#contact"
             onClick={(e) => handleNavClick(e, 'contact')}
             className="hidden md:flex items-center gap-2 px-6 py-1 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline"
           >
@@ -165,7 +168,7 @@ const Header: React.FC = () => {
               </a>
             ))}
             <a
-              href="#/about#contact"
+              href="/#/about#contact"
               onClick={(e) => {
                 setIsMenuOpen(false);
                 handleNavClick(e, 'contact');
