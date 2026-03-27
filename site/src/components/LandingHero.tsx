@@ -7,7 +7,7 @@ interface LandingHeroProps {
 const LandingHero: React.FC<LandingHeroProps> = ({ onStartChat }) => {
   return (
     <section
-      id="about"
+      id="hero"
       className="relative min-h-[90vh] flex flex-col items-center justify-center bg-transparent overflow-hidden"
     >
       <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center text-center">

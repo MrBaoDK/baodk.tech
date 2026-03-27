@@ -10,32 +10,46 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ simple = false }) => {
 
   const navItems = [
-    { href: '#/about#about', label: 'About', id: 'about' },
-    { href: '#/about#projects', label: 'Projects', id: 'projects' },
-    { href: '#/about#experience', label: 'Experience', id: 'experience' },
-    { href: '/blog', label: 'Blog', id: 'blog' },
-    { href: '/mini-games', label: 'Mini Games', id: 'mini-games' }
+    { href: '/#/about', label: 'Go to top', id: 'about' },
+    { href: '/#/about#projects', label: 'Projects', id: 'projects' },
+    { href: '/#/about#experience', label: 'Experience', id: 'experience' },
+    { href: 'https://blog.baodk.tech', label: 'Blog', id: 'blog' },
+    { href: 'https://games.baodk.tech', label: 'Mini Games', id: 'mini-games' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    if (id === 'blog' || id === 'mini-games') return;
+    const href = e.currentTarget.getAttribute('href');
 
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-
-      // Update hash manually 
-      const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
-      window.history.replaceState(null, '', newHash);
+    // External links
+    if (href?.startsWith('http')) {
+      e.preventDefault();
+      window.open(href, '_blank');
+      return;
     }
+
+    if (href?.startsWith('/#')) {
+      e.preventDefault();
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Update hash manually 
+        const newHash = id === 'about' ? '/#/about' : `/#/about#${id}`;
+        window.history.replaceState(null, '', newHash);
+        return;
+      }
+    }
+
+    // Local paths (like /blog or /games)
+    // If not a hash link and not an external link, let the browser navigate naturally
+    // This will cause a full page load to the sub-project
   };
 
   return (

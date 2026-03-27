@@ -67,7 +67,8 @@ const App: React.FC = () => {
       }
     };
 
-    if (!window.location.hash || window.location.hash === '#/') {
+    const isRootPath = window.location.pathname === '/' || window.location.pathname === '/index.html';
+    if (isRootPath && (!window.location.hash || window.location.hash === '#/')) {
       window.location.hash = '#/about';
     }
 
@@ -178,6 +179,12 @@ const App: React.FC = () => {
   };
 
   const isChatMode = currentRoute.startsWith('#/chat');
+
+  const isRootPath = window.location.pathname === '/' || window.location.pathname === '/index.html';
+
+  if (!isRootPath) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-[var(--color-dark)] relative">

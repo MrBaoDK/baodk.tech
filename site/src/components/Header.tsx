@@ -30,34 +30,47 @@ const Header: React.FC = () => {
   }, []);
 
   const navItems = [
-    { href: '#/about#about', label: 'About', id: 'about' },
-    { href: '#/about#skills', label: 'Skills', id: 'skills' },
-    { href: '#/about#projects', label: 'Projects', id: 'projects' },
-    { href: '#/about#experience', label: 'Experience', id: 'experience' },
-    { href: '#/about#testimonials', label: 'Testimonials', id: 'testimonials' },
-    { href: '#/chat', label: 'Ask AI', id: 'ask-ai' }
+    { href: '/#/about', label: 'About', id: 'about' },
+    { href: '/#/about#skills', label: 'Skills', id: 'skills' },
+    { href: '/#/about#projects', label: 'Projects', id: 'projects' },
+    { href: '/#/about#experience', label: 'Experience', id: 'experience' },
+    { href: '/#/about#testimonials', label: 'Testimonials', id: 'testimonials' },
+    { href: '/#/chat', label: 'Ask AI', id: 'ask-ai' }
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     if (id === 'ask-ai') return;
 
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const href = e.currentTarget.getAttribute('href');
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-
-      // Update hash manually to match App.tsx's behavior
-      const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
-      window.history.replaceState(null, '', newHash);
-      setActiveSection(id);
+    // External links
+    if (href?.startsWith('http')) {
+      e.preventDefault();
+      window.open(href, '_blank');
+      return;
     }
+
+    // Hash links
+    if (href?.startsWith('/#')) {
+      e.preventDefault();
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 100;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Update hash manually to match App.tsx's behavior
+        const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
+        window.history.replaceState(null, '', newHash);
+        setActiveSection(id);
+      }
+    }
+    // Local paths or external links: let browser navigate naturally
   };
 
   return (
