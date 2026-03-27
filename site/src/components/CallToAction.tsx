@@ -47,7 +47,7 @@ const CallToAction: React.FC = () => {
 
           {/* Secondary Options */}
           <div className="flex flex-wrap gap-8 justify-center items-center">
-            <a href="#/about#projects" className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline flex items-center gap-2 transition-colors">
+            <a href="/#/about#projects" className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline flex items-center gap-2 transition-colors">
               <span className="material-symbols-outlined text-sm">list_alt</span>
               View Engineering Deep Dives
             </a>

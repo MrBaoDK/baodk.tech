@@ -50,7 +50,7 @@ const LandingHero: React.FC<LandingHeroProps> = ({ onStartChat }) => {
           </button>
 
           <a
-            href="#/about#projects"
+            href="/#/about#projects"
             className="flex-1 px-8 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-3 no-underline group"
           >
             Projects

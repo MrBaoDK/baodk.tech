@@ -23,19 +23,19 @@ const ChatHero: React.FC<ChatHeroProps> = ({ onSelectTopic, onSendMessage }) => 
   };
 
   return (
-    <section 
-      id="chat-home" 
+    <section
+      id="chat-home"
       className="relative min-h-full py-16 flex flex-col items-center justify-center bg-transparent overflow-hidden"
     >
       <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center">
         {/* Centered Branding Header */}
         <div className="w-full max-w-2xl flex flex-col sm:flex-row justify-between items-center gap-6 mb-16 animate-in fade-in slide-in-from-top-4 duration-1000">
-          <a href="#/about" className="flex items-center gap-3 no-underline group scale-110">
+          <a href="/#/about" className="flex items-center gap-3 no-underline group scale-110">
             <img src="/logo/logo_head.svg" alt="Bao logo" className="w-10 h-10 group-hover:scale-110 transition-transform" />
             <span className="text-white font-black text-xl tracking-tighter uppercase">Bao <span className="text-[var(--color-primary)]">DK</span></span>
           </a>
           <a
-            href="#/about#contact"
+            href="/#/about#contact"
             className="flex items-center gap-3 px-8 py-3 rounded-2xl bg-white/5 border border-white/10 text-white font-black text-xs uppercase tracking-widest hover:bg-[var(--color-primary)] hover:border-transparent transition-all shadow-2xl no-underline group"
           >
             Hire Me
@@ -67,7 +67,7 @@ const ChatHero: React.FC<ChatHeroProps> = ({ onSelectTopic, onSendMessage }) => 
         </p>
 
         {/* Chat Pill Input */}
-        <form 
+        <form
           onSubmit={handleSubmit}
           className="w-full max-w-2xl relative group px-4 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300"
         >
@@ -78,7 +78,7 @@ const ChatHero: React.FC<ChatHeroProps> = ({ onSelectTopic, onSendMessage }) => 
             placeholder="Query the engineering ecosystem..."
             className="w-full py-4 md:py-6 px-10 rounded-full bg-white/[0.03] border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-[var(--color-primary)]/50 transition-all text-sm md:text-lg pr-20"
           />
-          <button 
+          <button
             type="submit"
             className="absolute right-6 top-1/2 -translate-y-1/2 w-10 h-10 md:w-14 md:h-14 rounded-full bg-[var(--color-primary)] text-white flex items-center justify-center hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 active:scale-95 disabled:opacity-50"
             disabled={!inputValue.trim()}
@@ -99,10 +99,10 @@ const ChatHero: React.FC<ChatHeroProps> = ({ onSelectTopic, onSendMessage }) => 
             </button>
           ))}
         </div>
-        
+
         {/* Navigation CTAs */}
         <div className="mt-16 flex flex-col items-center gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-          <button 
+          <button
             onClick={() => window.location.hash = '#/about'}
             className="flex items-center gap-3 text-white/20 hover:text-white transition-all group"
           >
