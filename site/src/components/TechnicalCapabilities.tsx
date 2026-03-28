@@ -57,9 +57,9 @@ const TechnicalCapabilities: React.FC = () => {
           <p className="text-lg text-[var(--color-text-light)] mb-4 md:mb-6">
             Ready to leverage these capabilities for your next project?
           </p>
-          <button className="btn-primary">
+          <a href="/#/about#contact" className="btn-primary">
             Discuss Your Requirements
-          </button>
+          </a>
         </div>
       </div>
     </section>

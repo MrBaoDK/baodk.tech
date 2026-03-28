@@ -1,6 +1,8 @@
 import React from 'react';
 
+import { NAV_ITEMS } from '@baodk-site/data/navigation';
 import { SOCIALS } from '@baodk-site/data/socials';
+import { handleNavClick } from '@baodk-site/utils/navigation';
 import SocialLinks from './SocialLinks';
 
 interface FooterProps {
@@ -9,50 +11,10 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ simple = false }) => {
 
-  const navItems = [
-    { href: '/#/about', label: 'Go to top', id: 'about' },
-    { href: '/#/about#projects', label: 'Projects', id: 'projects' },
-    { href: '/#/about#experience', label: 'Experience', id: 'experience' },
-    { href: 'https://blog.baodk.tech', label: 'Blog', id: 'blog' },
-    { href: 'https://games.baodk.tech', label: 'Mini Games', id: 'mini-games' }
-  ];
+  const footerNavItems = NAV_ITEMS.filter(item => item.whereUsed.includes('footer'));
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    const href = e.currentTarget.getAttribute('href');
-
-    // External links
-    if (href?.startsWith('http')) {
-      e.preventDefault();
-      window.open(href, '_blank');
-      return;
-    }
-
-    if (href?.startsWith('/#')) {
-      e.preventDefault();
-      const element = document.getElementById(id);
-      if (element) {
-        const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-
-        // Update hash manually 
-        const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
-        window.history.replaceState(null, '', newHash);
-      } else {
-        // Element not in DOM, navigate to hash route to trigger route change
-        window.location.href = href;
-      }
-      return;
-    }
-
-    // Local paths (like /blog or /games)
-    // If not a hash link and not an external link, let the browser navigate naturally
-    // This will cause a full page load to the sub-project
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    handleNavClick(e, id);
   };
 
   return (
@@ -81,14 +43,14 @@ const Footer: React.FC<FooterProps> = ({ simple = false }) => {
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary)] mb-8">Navigation</h4>
               <ul className="space-y-4">
-                {navItems.map((item) => (
+                {footerNavItems.map((item) => (
                   <li key={item.id}>
                     <a
                       href={item.href}
-                      onClick={(e) => handleNavClick(e, item.id)}
+                      onClick={(e) => onNavClick(e, item.id)}
                       className="text-white/40 hover:text-white font-bold text-xs uppercase tracking-widest no-underline transition-colors focus:outline-none"
                     >
-                      {item.label}
+                      {item.footerLabel || item.label}
                     </a>
                   </li>
                 ))}

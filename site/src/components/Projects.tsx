@@ -94,9 +94,9 @@ const Projects: React.FC = () => {
           <p className="text-xl text-white/40 mb-8 font-medium">
             Interested in similar results for your organization?
           </p>
-          <button className="px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all hover:scale-105 shadow-xl">
+          <a href="/#/about#contact" className="px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all hover:scale-105 shadow-xl">
             Book a Collaboration
-          </button>
+          </a>
         </div>
       </div>
     </section>

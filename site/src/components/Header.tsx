@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-import { SOCIALS } from '@baodk-site/data/socials';
+import { NAV_ITEMS } from '@baodk-site/data/navigation';
+import { handleNavClick } from '@baodk-site/utils/navigation';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,51 +30,15 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { href: '/#/about', label: 'About', id: 'about' },
-    { href: '/#/about#skills', label: 'Skills', id: 'skills' },
-    { href: '/#/about#projects', label: 'Projects', id: 'projects' },
-    { href: '/#/about#experience', label: 'Experience', id: 'experience' },
-    { href: '/#/about#testimonials', label: 'Testimonials', id: 'testimonials' },
-    { href: '/#/chat', label: 'Ask AI', id: 'ask-ai' }
-  ];
+  const headerNavItems = NAV_ITEMS.filter(item => item.whereUsed.includes('header'));
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     if (id === 'ask-ai') return;
 
-    const href = e.currentTarget.getAttribute('href');
-
-    // External links
-    if (href?.startsWith('http')) {
-      e.preventDefault();
-      window.open(href, '_blank');
-      return;
-    }
-
-    // Hash links
-    if (href?.startsWith('/#')) {
-      e.preventDefault();
-      const element = document.getElementById(id);
-      if (element) {
-        const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-
-        // Update hash manually to match App.tsx's behavior
-        const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
-        window.history.replaceState(null, '', newHash);
-        setActiveSection(id);
-      } else {
-        // Element not in DOM (e.g. navigating from chat mode to a landing section)
-        window.location.href = href;
-      }
-    }
-    // Local paths: let browser navigate naturally
+    handleNavClick(e, id, (id) => {
+      setActiveSection(id);
+      setIsMenuOpen(false);
+    });
   };
 
   return (
@@ -118,11 +83,11 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            {navItems.map((item) => (
+            {headerNavItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                onClick={(e) => handleNavClick(e, item.id)}
+                onClick={(e) => onNavClick(e, item.id)}
                 className={`text-sm font-bold transition-all duration-300 no-underline uppercase tracking-widest hover:text-[var(--color-primary)] ${activeSection === item.id ? 'text-[var(--color-primary)]' : 'text-white/70'
                   }`}
               >
@@ -134,7 +99,7 @@ const Header: React.FC = () => {
           {/* Professional CTA */}
           <a
             href="/#/about#contact"
-            onClick={(e) => handleNavClick(e, 'contact')}
+            onClick={(e) => onNavClick(e, 'contact')}
             className="hidden md:flex items-center gap-2 px-6 py-1 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline"
           >
             Hire Me
@@ -154,13 +119,12 @@ const Header: React.FC = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden pb-10 border-t border-white/10 mt-6 animate-in fade-in slide-in-from-top-4 duration-300">
-            {navItems.map((item) => (
+            {headerNavItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => {
-                  setIsMenuOpen(false);
-                  handleNavClick(e, item.id);
+                  onNavClick(e, item.id);
                 }}
                 className="block py-3 text-white hover:text-[var(--color-dark)] transition-colors no-underline"
               >
@@ -170,8 +134,7 @@ const Header: React.FC = () => {
             <a
               href="/#/about#contact"
               onClick={(e) => {
-                setIsMenuOpen(false);
-                handleNavClick(e, 'contact');
+                onNavClick(e, 'contact');
               }}
               className="btn-primary btn-lg mt-4 w-full no-underline text-center flex items-center justify-center py-3"
             >
