@@ -38,14 +38,20 @@ export interface Testimonial {
 }
 
 // Navigation and UI interfaces
+export type NavLocation = 'header' | 'footer';
+
 export interface NavItem {
   href: string;
   label: string;
+  id: string;
+  whereUsed?: NavLocation[];
+  footerLabel?: string;
 }
 
 export interface SocialItem extends NavItem {
   icon: string;
   labels?: string[];
+  order?: number;
 }
 
 export interface ContactInfo {

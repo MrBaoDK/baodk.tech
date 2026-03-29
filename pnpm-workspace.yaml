@@ -1,2 +1,6 @@
 packages:
-  - 'site'
+  - site
+
+onlyBuiltDependencies:
+  - core-js-pure
+  - esbuild

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @source "./index.html";
 @source "./src";
 
@@ -12,25 +12,25 @@
 
 :root {
   /* Cyber Obsidian (baodk.tech) Palette */
-  --color-primary: #E94560;
+  --color-primary: #e94560;
   /* Accent Crimson */
-  --color-accent: #E94560;
+  --color-accent: #e94560;
   /* Accent Crimson */
-  --color-accent-dark: #C03940;
+  --color-accent-dark: #c03940;
   /* Darker crimson for hover */
-  --color-dark: #1A1A2E;
+  --color-dark: #1a1a2e;
   /* Deep Space Blue (Main Background) */
-  --color-navy: #0F3460;
+  --color-navy: #0f3460;
   /* Midnight Navy (Secondary/Cards) */
-  --color-white: #EEEEEE;
+  --color-white: #eeeeee;
   /* Primary Light Text */
-  --color-light-gray: #C0C0C0;
+  --color-light-gray: #c0c0c0;
   /* Silver (Muted Text) */
-  --color-text: #EEEEEE;
+  --color-text: #eeeeee;
   /* Main text color */
-  --color-text-light: #C0C0C0;
+  --color-text-light: #c0c0c0;
   /* Light/Muted text color */
-  --color-background: #1A1A2E;
+  --color-background: #1a1a2e;
   /* Background color */
   /* Stitch-inspired Palette */
   /* --color-primary: #e91e63;      /* vibrant pink-red 
@@ -475,6 +475,6 @@ html {
 
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
