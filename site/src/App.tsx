@@ -85,7 +85,7 @@ const App: React.FC = () => {
 
     // Reveal animations & Hash synchronization on scroll
     const observerOptions = {
-      threshold: 0.2,
+      threshold: 0.05,
       rootMargin: '-100px 0px -20% 0px',
     };
 

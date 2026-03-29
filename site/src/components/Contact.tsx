@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id='contact' className='section relative'>
+    <section className='section relative'>
       <EmailProviderModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

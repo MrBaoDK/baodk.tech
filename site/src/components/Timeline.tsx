@@ -4,7 +4,7 @@ import { careerTimeline } from '@baodk-site/data/timeline';
 
 const Timeline: React.FC = () => {
   return (
-    <section id='experience' className='section'>
+    <section className='section'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         {/* Section Header */}
         <div className='section-header max-w-3xl mx-auto mb-20'>

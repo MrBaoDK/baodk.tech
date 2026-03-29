@@ -26,7 +26,7 @@ export const projects: Project[] = [
     ],
     impact:
       'Improved traceability by 80%; eliminated Excel-based tracking; reduced manual errors by 50% through unified digital workflow.',
-    category: 'Engineering Tools',
+    category: 'Analytics',
   },
   {
     title: 'FAIR Reaction - Automated FAI & Build Plan Tracking',
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     ],
     impact:
       'Improved FAI timeliness by 50%; reduced inspection delays through proactive build plan notifications and automated monitoring.',
-    category: 'Analytics',
+    category: 'AI/Automation',
   },
   {
     title: 'Direct-Labor Performance Evaluation',
@@ -81,7 +81,7 @@ export const projects: Project[] = [
       'Real-time detection system for configuration changes, parameter variations, and automated engineering checklists.',
     technologies: ['Python', 'Mendix', 'Postgres', 'Power BI', 'Kubernetes', 'RegEx'],
     impact: 'Runner-up in Delivery Best Practice Award; significantly reduced rework costs.',
-    category: 'Process Automation',
+    category: 'AI/Automation',
   },
   {
     title: 'BOM Comparison Tool',
@@ -89,6 +89,6 @@ export const projects: Project[] = [
       'Automated BOM revision comparison highlighting added/removed/updated parts to accelerate engineering review.',
     technologies: ['Power BI', 'DAX', 'Power Query', 'Data Modeling', 'ERP Integration'],
     impact: 'Reduced manual comparison time and improved revision tracking accuracy.',
-    category: 'Engineering Tools',
+    category: 'Analytics',
   },
 ];
