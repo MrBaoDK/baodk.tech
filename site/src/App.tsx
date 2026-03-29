@@ -7,6 +7,11 @@ import ChatAssistant from '@baodk-site/components/chat/ChatAssistant';
 import ChatHero from '@baodk-site/components/ChatHero';
 import LiquidGrid from '@baodk-site/components/effects/LiquidGrid';
 
+export interface Message {
+  role: 'user' | 'ai';
+  content: string;
+}
+
 // Lazy load section components
 const Skills = React.lazy(() => import('@baodk-site/components/Skills'));
 const Projects = React.lazy(() => import('@baodk-site/components/Projects'));
@@ -17,14 +22,14 @@ const Contact = React.lazy(() => import('@baodk-site/components/Contact'));
 import '@baodk-site/styles/globals.css';
 
 const SectionLoader: React.FC = () => (
-  <div className="h-40 flex items-center justify-center opacity-50">
-    <div className="w-6 h-6 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin" />
+  <div className='h-40 flex items-center justify-center opacity-50'>
+    <div className='w-6 h-6 border-2 border-[var(--color-primary)] border-t-transparent rounded-full animate-spin' />
   </div>
 );
 
 const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState(window.location.hash || '#/about');
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
   const scrollToSection = useCallback((id: string) => {
@@ -36,7 +41,7 @@ const App: React.FC = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
 
       // Update hash without triggering hashchange event
@@ -67,7 +72,8 @@ const App: React.FC = () => {
       }
     };
 
-    const isRootPath = window.location.pathname === '/' || window.location.pathname === '/index.html';
+    const isRootPath =
+      window.location.pathname === '/' || window.location.pathname === '/index.html';
     if (isRootPath && (!window.location.hash || window.location.hash === '#/')) {
       window.location.hash = '#/about';
     }
@@ -87,14 +93,14 @@ const App: React.FC = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          
+
           // Update hash as user scrolls through sections
           if (window.location.hash.startsWith('#/about')) {
             const id = entry.target.id;
             if (id && id !== 'about' && id !== 'hero') {
-               window.history.replaceState(null, '', `#/about#${id}`);
+              window.history.replaceState(null, '', `#/about#${id}`);
             } else if (id === 'about' || id === 'hero') {
-               window.history.replaceState(null, '', `#/about`);
+              window.history.replaceState(null, '', `#/about`);
             }
           }
         }
@@ -111,15 +117,19 @@ const App: React.FC = () => {
   }, [currentRoute, scrollToSection]); // Re-run when route changes to catch new elements
 
   const handleSendMessage = useCallback((content: string) => {
-    setMessages(prev => [...prev, { role: 'user', content }]);
+    setMessages((prev) => [...prev, { role: 'user', content }]);
     setIsProcessing(true);
 
     // Simulate AI response
     setTimeout(() => {
-      setMessages(prev => [...prev, {
-        role: 'ai',
-        content: "I've processed your query. As an AI assistant, I can help you explore Bao's technical ecosystem, from MLOps to high-performance frontend engineering. What specific details can I uncover for you?"
-      }]);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'ai',
+          content:
+            "I've processed your query. As an AI assistant, I can help you explore Bao's technical ecosystem, from MLOps to high-performance frontend engineering. What specific details can I uncover for you?",
+        },
+      ]);
       setIsProcessing(false);
     }, 1000);
   }, []);
@@ -129,18 +139,21 @@ const App: React.FC = () => {
       window.location.hash = '#/about#contact';
       return;
     }
-    const topicResponses: any = {
-      experience: "Bao specializes in Data & Quality Engineering, with deep expertise in Python, SQL, and automated testing frameworks.",
-      skills: "Technical stack includes React 19, Tailwind 4.0, Python, and cloud-native MLOps architectures.",
-      projects: "From building indie tools with 10K+ users to internal enterprise platforms.",
-      testimonials: "Known for technical excellence and measurable business impact across diverse teams.",
-      contact: "You can book a call via Calendly or message Bao directly on LinkedIn!",
+    const topicResponses: Record<string, string> = {
+      experience:
+        'Bao specializes in Data & Quality Engineering, with deep expertise in Python, SQL, and automated testing frameworks.',
+      skills:
+        'Technical stack includes React 19, Tailwind 4.0, Python, and cloud-native MLOps architectures.',
+      projects: 'From building indie tools with 10K+ users to internal enterprise platforms.',
+      testimonials:
+        'Known for technical excellence and measurable business impact across diverse teams.',
+      contact: 'You can book a call via Calendly or message Bao directly on LinkedIn!',
     };
 
-    setMessages(prev => [
+    setMessages((prev) => [
       ...prev,
       { role: 'user', content: `Tell me about ${topic}...` },
-      { role: 'ai', content: topicResponses[topic] || "How can I help you today?" }
+      { role: 'ai', content: topicResponses[topic] || 'How can I help you today?' },
     ]);
 
     if (window.location.hash !== '#/chat') {
@@ -151,31 +164,41 @@ const App: React.FC = () => {
   const renderLandingContent = () => {
     if (currentRoute.startsWith('#/about')) {
       return (
-        <div className="landing-page-content">
-          <div id="about">
-            <LandingHero onStartChat={() => window.location.hash = '#/chat'} />
+        <div className='landing-page-content'>
+          <div id='about'>
+            <LandingHero onStartChat={() => (window.location.hash = '#/chat')} />
           </div>
-          <div id="skills" className="reveal">
-            <Suspense fallback={<SectionLoader />}><Skills /></Suspense>
+          <div id='skills' className='reveal'>
+            <Suspense fallback={<SectionLoader />}>
+              <Skills />
+            </Suspense>
           </div>
-          <div id="projects" className="reveal">
-            <Suspense fallback={<SectionLoader />}><Projects /></Suspense>
+          <div id='projects' className='reveal'>
+            <Suspense fallback={<SectionLoader />}>
+              <Projects />
+            </Suspense>
           </div>
-          <div id="experience" className="reveal">
-            <Suspense fallback={<SectionLoader />}><Timeline /></Suspense>
+          <div id='experience' className='reveal'>
+            <Suspense fallback={<SectionLoader />}>
+              <Timeline />
+            </Suspense>
           </div>
-          <div id="testimonials" className="reveal">
-            <Suspense fallback={<SectionLoader />}><Testimonials /></Suspense>
+          <div id='testimonials' className='reveal'>
+            <Suspense fallback={<SectionLoader />}>
+              <Testimonials />
+            </Suspense>
           </div>
-          <div id="contact" className="reveal">
-            <Suspense fallback={<SectionLoader />}><Contact /></Suspense>
+          <div id='contact' className='reveal'>
+            <Suspense fallback={<SectionLoader />}>
+              <Contact />
+            </Suspense>
           </div>
         </div>
       );
     }
 
     // Fallback for direct section access if needed, though they are now part of #/about
-    return <LandingHero onStartChat={() => window.location.hash = '#/chat'} />;
+    return <LandingHero onStartChat={() => (window.location.hash = '#/chat')} />;
   };
 
   const isChatMode = currentRoute.startsWith('#/chat');
@@ -187,16 +210,13 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-dark)] relative">
+    <div className='min-h-screen bg-[var(--color-dark)] relative'>
       <LiquidGrid />
 
       {isChatMode ? (
         <ChatLayout onSelectTopic={handleSelectTopic}>
           {messages.length === 0 ? (
-            <ChatHero
-              onSelectTopic={handleSelectTopic}
-              onSendMessage={handleSendMessage}
-            />
+            <ChatHero onSendMessage={handleSendMessage} />
           ) : (
             <ChatAssistant
               messages={messages}
@@ -206,9 +226,7 @@ const App: React.FC = () => {
           )}
         </ChatLayout>
       ) : (
-        <LandingLayout>
-          {renderLandingContent()}
-        </LandingLayout>
+        <LandingLayout>{renderLandingContent()}</LandingLayout>
       )}
     </div>
   );

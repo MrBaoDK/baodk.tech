@@ -11,7 +11,7 @@ export const scrollToSection = (id: string, offset = 100) => {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
     return true;
   }
@@ -25,7 +25,7 @@ export const scrollToSection = (id: string, offset = 100) => {
 export const handleNavClick = (
   e: React.MouseEvent<HTMLAnchorElement>,
   id: string,
-  onAfterNavigate?: (id: string) => void
+  onAfterNavigate?: (id: string) => void,
 ) => {
   const href = e.currentTarget.getAttribute('href');
 
@@ -40,13 +40,13 @@ export const handleNavClick = (
   if (href?.startsWith('/#')) {
     e.preventDefault();
     const success = scrollToSection(id);
-    
+
     if (success) {
       // Update hash manually without triggering a full page reload or doubling history
       const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
       // Use replaceState to keep history clean during section scrolling
       window.history.replaceState(null, '', newHash);
-      
+
       if (onAfterNavigate) {
         onAfterNavigate(id);
       }

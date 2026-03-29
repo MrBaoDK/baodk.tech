@@ -44,7 +44,7 @@ export interface NavItem {
   href: string;
   label: string;
   id: string;
-  whereUsed: NavLocation[];
+  whereUsed?: NavLocation[];
   footerLabel?: string;
 }
 

@@ -6,48 +6,48 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'About',
     footerLabel: 'Go to top',
     id: 'about',
-    whereUsed: ['header', 'footer']
+    whereUsed: ['header', 'footer'],
   },
   {
     href: '/#/about#skills',
     label: 'Skills',
     id: 'skills',
-    whereUsed: ['header']
+    whereUsed: ['header'],
   },
   {
     href: '/#/about#projects',
     label: 'Projects',
     id: 'projects',
-    whereUsed: ['header', 'footer']
+    whereUsed: ['header', 'footer'],
   },
   {
     href: '/#/about#experience',
     label: 'Experience',
     id: 'experience',
-    whereUsed: ['header', 'footer']
+    whereUsed: ['header', 'footer'],
   },
   {
     href: '/#/about#testimonials',
     label: 'Testimonials',
     id: 'testimonials',
-    whereUsed: ['header']
+    whereUsed: ['header'],
   },
   {
     href: '/#/chat',
     label: 'Ask AI',
     id: 'ask-ai',
-    whereUsed: ['header']
+    whereUsed: ['header'],
   },
   {
     href: 'https://blog.baodk.tech',
     label: 'Blog',
     id: 'blog',
-    whereUsed: ['footer']
+    whereUsed: ['footer'],
   },
   {
     href: 'https://games.baodk.tech',
     label: 'Mini Games',
     id: 'mini-games',
-    whereUsed: ['footer']
-  }
+    whereUsed: ['footer'],
+  },
 ];

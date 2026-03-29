@@ -13,7 +13,17 @@ export const projects: Project[] = [
     title: 'NCM Helper - End-to-End Quality Tracking & Escalation System',
     description:
       'Centralized NCM (Non-Conformance Material) workflow platform combining standardized findings, escalation rules, trend analysis, and real-time visibility using both custom web app and Power Platform components.',
-    technologies: ['FastAPI', 'PostgreSQL', 'Azure DevOps', 'GitHub Actions', 'Power Apps', 'Power Automate', 'Power BI', 'SQL Server', 'Power Query'],
+    technologies: [
+      'FastAPI',
+      'PostgreSQL',
+      'Azure DevOps',
+      'GitHub Actions',
+      'Power Apps',
+      'Power Automate',
+      'Power BI',
+      'SQL Server',
+      'Power Query',
+    ],
     impact:
       'Improved traceability by 80%; eliminated Excel-based tracking; reduced manual errors by 50% through unified digital workflow.',
     category: 'Engineering Tools',
@@ -22,7 +32,18 @@ export const projects: Project[] = [
     title: 'FAIR Reaction - Automated FAI & Build Plan Tracking',
     description:
       'Unified automation system combining MES-based triggers, build plan validation, RegEx matching, alerts, and dashboards to proactively track First Article Inspection (FAI) progress.',
-    technologies: ['Python', 'MES Integration', 'Grafana', 'TimescaleDB', 'Kafka', 'Pandas', 'Postgres', 'Power Automate', 'Power BI', 'RegEx'],
+    technologies: [
+      'Python',
+      'MES Integration',
+      'Grafana',
+      'TimescaleDB',
+      'Kafka',
+      'Pandas',
+      'Postgres',
+      'Power Automate',
+      'Power BI',
+      'RegEx',
+    ],
     impact:
       'Improved FAI timeliness by 50%; reduced inspection delays through proactive build plan notifications and automated monitoring.',
     category: 'Analytics',
@@ -32,8 +53,15 @@ export const projects: Project[] = [
     description:
       'Unified performance evaluation platform consolidating HR, attendance, productivity, and behavioral assessment into a single analytic model with visual quizzes, automated scoring, and near‑real‑time dashboards.',
     technologies: [
-      'Power BI', 'DAX', 'Azure SQL', 'Power Automate', 'Power Query',
-      'React', 'FastAPI', 'PostgreSQL', 'Redis'
+      'Power BI',
+      'DAX',
+      'Azure SQL',
+      'Power Automate',
+      'Power Query',
+      'React',
+      'FastAPI',
+      'PostgreSQL',
+      'Redis',
     ],
     impact:
       'Reduced evaluation time by 90%; improved scoring consistency by 40%; enabled granular insights by line, shift, and role.',
@@ -62,6 +90,5 @@ export const projects: Project[] = [
     technologies: ['Power BI', 'DAX', 'Power Query', 'Data Modeling', 'ERP Integration'],
     impact: 'Reduced manual comparison time and improved revision tracking accuracy.',
     category: 'Engineering Tools',
-  }
+  },
 ];
-
