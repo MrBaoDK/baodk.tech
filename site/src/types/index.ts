@@ -1,28 +1,28 @@
-// Core interfaces matching the markdown specifications
-export interface Skill {
-  title: string;
-  description: string;
-  technologies: string[];
-  icon?: string;
+export interface Technology {
+  name: string;
+  logoSlug?: string;
 }
 
-export interface TechnicalCapability extends Skill {
-  icon: string;
-}
-
-export interface Project {
+export interface BaseContent {
   title: string;
   description: string;
-  technologies: string[];
+}
+
+export interface Capability extends BaseContent {
+  core: Technology[];
+  utility: string[];
+  icon?: string; // Unified: emoji or Material Symbol name
+}
+
+export interface Project extends BaseContent {
+  technologies: string[]; // Keeping as string[] for now per user feedback
   impact: string;
   category?: string;
 }
 
-export interface Experience {
+export interface Experience extends BaseContent {
   year: string;
-  title: string;
   company: string;
-  description: string;
 }
 
 export interface TimelineItem extends Experience {
@@ -31,14 +31,13 @@ export interface TimelineItem extends Experience {
 
 export interface Testimonial {
   name: string;
-  role: string; // e.g., client, colleague, manager
-  location: string; // country or region
+  role: string;
+  location: string;
   content: string;
-  logo: string; // short initials or flag-like token
+  logo: string;
 }
 
-// Navigation and UI interfaces
-export type NavLocation = 'header' | 'footer';
+export type NavLocation = 'header' | 'footer' | 'cta';
 
 export interface NavItem {
   href: string;

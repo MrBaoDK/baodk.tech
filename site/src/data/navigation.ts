@@ -9,9 +9,20 @@ export const NAV_ITEMS: NavItem[] = [
     whereUsed: ['header', 'footer'],
   },
   {
+    href: '/#/about#contact',
+    label: 'Contact',
+    id: 'contact',
+    whereUsed: ['cta'],
+  },
+  {
     href: '/#/about#skills',
     label: 'Skills',
     id: 'skills',
+  },
+  {
+    href: '/#/about#capabilities',
+    label: 'Capabilities',
+    id: 'capabilities',
     whereUsed: ['header'],
   },
   {

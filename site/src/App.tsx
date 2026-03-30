@@ -1,11 +1,11 @@
 import React, { useEffect, useState, Suspense, useCallback } from 'react';
 
-import LandingLayout from '@baodk-site/layouts/LandingLayout';
-import ChatLayout from '@baodk-site/layouts/ChatLayout';
-import LandingHero from '@baodk-site/components/LandingHero';
 import ChatAssistant from '@baodk-site/components/chat/ChatAssistant';
 import ChatHero from '@baodk-site/components/ChatHero';
 import LiquidGrid from '@baodk-site/components/effects/LiquidGrid';
+import LandingHero from '@baodk-site/components/LandingHero';
+import ChatLayout from '@baodk-site/layouts/ChatLayout';
+import LandingLayout from '@baodk-site/layouts/LandingLayout';
 
 export interface Message {
   role: 'user' | 'ai';
@@ -13,7 +13,9 @@ export interface Message {
 }
 
 // Lazy load section components
-const Skills = React.lazy(() => import('@baodk-site/components/Skills'));
+const Capabilities = React.lazy(
+  () => import('@baodk-site/components/Capabilities'),
+);
 const Projects = React.lazy(() => import('@baodk-site/components/Projects'));
 const Timeline = React.lazy(() => import('@baodk-site/components/Timeline'));
 const Testimonials = React.lazy(() => import('@baodk-site/components/Testimonials'));
@@ -168,9 +170,9 @@ const App: React.FC = () => {
           <div id='about'>
             <LandingHero onStartChat={() => (window.location.hash = '#/chat')} />
           </div>
-          <div id='skills' className='reveal'>
+          <div id='capabilities' className='reveal'>
             <Suspense fallback={<SectionLoader />}>
-              <Skills />
+              <Capabilities />
             </Suspense>
           </div>
           <div id='projects' className='reveal'>

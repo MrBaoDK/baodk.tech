@@ -5,12 +5,7 @@ import { projects } from '@baodk-site/data/projects';
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const categories = [
-    'All',
-    'Data Engineering',
-    'Analytics',
-    'AI/Automation',
-  ];
+  const categories = ['All', 'Data Engineering', 'Analytics', 'AI/Automation'];
 
   const filteredProjects =
     selectedCategory === 'All'
@@ -37,10 +32,11 @@ const Projects: React.FC = () => {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-2 rounded-full font-bold text-sm tracking-widest uppercase transition-all duration-300 border ${selectedCategory === category
+              className={`px-6 py-2 rounded-full font-bold text-sm tracking-widest uppercase transition-all duration-300 border ${
+                selectedCategory === category
                   ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)] shadow-[0_0_20px_rgba(233,30,96,0.3)] scale-105'
                   : 'bg-white/5 text-white/40 border-white/10 hover:border-white/30 hover:text-white'
-                }`}
+              }`}
             >
               {category}
             </button>
