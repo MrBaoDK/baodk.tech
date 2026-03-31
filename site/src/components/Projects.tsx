@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { projects } from '@baodk-site/data/projects';
-
 import { handleNavClick } from '@baodk-site/utils/navigation';
 
 const Projects: React.FC = () => {

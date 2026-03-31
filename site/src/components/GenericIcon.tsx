@@ -44,7 +44,9 @@ const GenericIcon: React.FC<GenericIconProps> = ({
 
   // 1. Handle Component-based Icons (React Icons or Custom SVGs)
   if (typeof Icon === 'function' || (typeof Icon === 'object' && Icon !== null)) {
-    const IconComponent = Icon as React.ComponentType<React.SVGProps<SVGSVGElement> & { size?: number | string }>;
+    const IconComponent = Icon as React.ComponentType<
+      React.SVGProps<SVGSVGElement> & { size?: number | string }
+    >;
     return <IconComponent className={className} size={pixelSize} style={iconSizeStyle} />;
   }
 

@@ -1,7 +1,13 @@
 import React from 'react';
 
 const PowerBI: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg viewBox='0 0 96 96' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='currentColor' {...props}>
+  <svg
+    viewBox='0 0 96 96'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    stroke='currentColor'
+    {...props}
+  >
     {/* Middle Bar - Primary Anchor (Filled) */}
     <path
       d='M32 28C32 25.7909 33.791 24 36.0001 24H60C62.2091 24 64 26.1909 64 28V96H32V28Z'

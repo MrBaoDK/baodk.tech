@@ -1,5 +1,13 @@
 import { FaGlobeAsia, FaLinkedin } from 'react-icons/fa';
-import { SiGithub, SiX, SiFacebook, SiInstagram, SiTiktok, SiGooglesummerofcode, SiCredly } from 'react-icons/si';
+import {
+  SiCredly,
+  SiFacebook,
+  SiGithub,
+  SiGooglesummerofcode,
+  SiInstagram,
+  SiTiktok,
+  SiX,
+} from 'react-icons/si';
 
 import { SocialItem } from '@baodk-site/types';
 
