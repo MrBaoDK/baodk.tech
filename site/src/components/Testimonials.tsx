@@ -1,8 +1,12 @@
 import React from 'react';
 
 import { clientTestimonials } from '@baodk-site/data/testimonials';
+import { handleNavClick } from '@baodk-site/utils/navigation';
 
 const Testimonials: React.FC = () => {
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    handleNavClick(e, id);
+  };
   return (
     <section className='section'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -88,6 +92,7 @@ const Testimonials: React.FC = () => {
           </p>
           <a
             href='/#/about#contact'
+            onClick={(e) => onNavClick(e, 'contact')}
             className='px-12 py-5 rounded-full bg-[var(--color-primary)] text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-[var(--color-primary)]/40 no-underline inline-block'
           >
             Start Your Project Today

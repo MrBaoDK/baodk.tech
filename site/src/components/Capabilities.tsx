@@ -3,8 +3,12 @@ import React, { useMemo, useState } from 'react';
 import GenericIcon from '@baodk-site/components/GenericIcon';
 import { capabilities } from '@baodk-site/data/capabilities';
 import { Technology } from '@baodk-site/types';
+import { handleNavClick } from '@baodk-site/utils/navigation';
 
 const Capabilities: React.FC = () => {
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    handleNavClick(e, id);
+  };
   const categories = useMemo(() => ['All', ...capabilities.map((s) => s.title)], []);
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -140,7 +144,11 @@ const Capabilities: React.FC = () => {
           <p className='text-lg text-[var(--color-text-light)] mb-4 md:mb-6'>
             Ready to leverage these capabilities for your next project?
           </p>
-          <a href='/#/about#contact' className='btn-primary'>
+          <a
+            href='/#/about#contact'
+            onClick={(e) => onNavClick(e, 'contact')}
+            className='px-12 py-5 bg-[var(--color-primary)] text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-[var(--color-primary)]/40 inline-block no-underline rounded-full'
+          >
             Discuss Your Requirements
           </a>
         </div>

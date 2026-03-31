@@ -57,8 +57,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
   overflow-x: hidden;
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -431,12 +431,7 @@ a:focus {
   outline-offset: 2px;
 }
 
-/* Smooth Scroll Enhancements */
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-  /* Account for sticky header */
-}
+
 
 /* Section Transitions */
 .reveal {

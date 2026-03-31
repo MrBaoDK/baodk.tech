@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { projects } from '@baodk-site/data/projects';
 
+import { handleNavClick } from '@baodk-site/utils/navigation';
+
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -11,6 +13,10 @@ const Projects: React.FC = () => {
     selectedCategory === 'All'
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
+
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    handleNavClick(e, id);
+  };
 
   return (
     <section className='section relative'>
@@ -92,13 +98,14 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className='text-center mt-24 reveal'>
+        <div className='text-center mt-24'>
           <p className='text-xl text-white/40 mb-8 font-medium'>
             Interested in similar results for your organization?
           </p>
           <a
             href='/#/about#contact'
-            className='px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all hover:scale-105 shadow-xl'
+            onClick={(e) => onNavClick(e, 'contact')}
+            className='px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all hover:scale-105 shadow-xl inline-block no-underline'
           >
             Book a Collaboration
           </a>

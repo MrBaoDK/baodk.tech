@@ -1,3 +1,6 @@
+import { FaGlobeAsia, FaLinkedin } from 'react-icons/fa';
+import { SiGithub, SiX, SiFacebook, SiInstagram, SiTiktok, SiGooglesummerofcode, SiCredly } from 'react-icons/si';
+
 import { SocialItem } from '@baodk-site/types';
 
 interface SocialData {
@@ -9,7 +12,7 @@ export const SOCIALS: SocialData = {
     id: 'github',
     href: 'https://github.com/mrbaodk',
     label: 'GitHub',
-    icon: 'code',
+    icon: SiGithub,
     labels: ['digital-network', 'primary'],
     order: 2,
   },
@@ -17,7 +20,7 @@ export const SOCIALS: SocialData = {
     id: 'linkedin',
     href: 'https://linkedin.com/in/baodk',
     label: 'LinkedIn',
-    icon: 'work',
+    icon: FaLinkedin,
     labels: ['digital-network', 'primary'],
     order: 1,
   },
@@ -25,39 +28,39 @@ export const SOCIALS: SocialData = {
     id: 'twitter',
     href: 'https://x.com/mrbaodk',
     label: 'X',
-    icon: 'share',
+    icon: SiX,
   },
   FACEBOOK: {
     id: 'facebook',
     href: 'https://facebook.com/baodk.tech',
     label: 'Facebook',
-    icon: 'facebook',
+    icon: SiFacebook,
     labels: ['digital-network'],
   },
   INSTAGRAM: {
     id: 'instagram',
     href: 'https://instagram.com/mrbaodk',
     label: 'Instagram',
-    icon: 'instagram',
+    icon: SiInstagram,
   },
   TIKTOK: {
     id: 'tiktok',
     href: 'https://tiktok.com/mrbaodk',
     label: 'Tiktok',
-    icon: 'tiktok',
+    icon: SiTiktok,
     labels: ['digital-network'],
   },
   WEBSITE: {
     id: 'website',
     href: 'https://baodk.tech',
     label: 'BAODK.TECH',
-    icon: 'language',
+    icon: FaGlobeAsia,
   },
   GDEV: {
     id: 'gdev',
     href: 'https://g.dev/baodk',
     label: 'Google Developer',
-    icon: 'g_dev',
+    icon: SiGooglesummerofcode,
     labels: ['digital-network'],
   },
   PHONE: {
@@ -84,7 +87,7 @@ export const SOCIALS: SocialData = {
     id: 'credly',
     href: 'https://credly.com/users/bao-dk/badges',
     label: 'Credly',
-    icon: 'workspace_premium',
+    icon: SiCredly,
     labels: ['primary'],
     order: 3,
   },

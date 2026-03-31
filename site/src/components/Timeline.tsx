@@ -1,8 +1,10 @@
-import React from 'react';
-
 import { careerTimeline } from '@baodk-site/data/timeline';
+import { handleNavClick } from '@baodk-site/utils/navigation';
 
 const Timeline: React.FC = () => {
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    handleNavClick(e, id);
+  };
   return (
     <section className='section'>
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
@@ -87,13 +89,14 @@ const Timeline: React.FC = () => {
         </div>
 
         {/* Bottom CTA */}
-        <div className='text-center mt-32 reveal'>
+        <div className='text-center mt-32'>
           <p className='text-xl text-white/40 mb-8 font-medium'>
             Ready to add your success story to this timeline?
           </p>
           <a
             href='/#/about#contact'
-            className='px-8 py-4 rounded-full border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-bold uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all no-underline'
+            onClick={(e) => onNavClick(e, 'contact')}
+            className='px-8 py-4 rounded-full border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-bold uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all no-underline inline-block'
           >
             Let's Scale Together
           </a>

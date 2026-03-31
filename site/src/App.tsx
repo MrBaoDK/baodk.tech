@@ -41,7 +41,6 @@ const App: React.FC = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
       });
 
       // Update hash without triggering hashchange event
@@ -68,7 +67,7 @@ const App: React.FC = () => {
           }, 100);
         }
       } else if (hash === '#/about') {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0 });
       }
     };
 
