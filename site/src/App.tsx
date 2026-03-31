@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, useCallback } from 'react';
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
 
 import ChatAssistant from '@baodk-site/components/chat/ChatAssistant';
 import ChatHero from '@baodk-site/components/ChatHero';
@@ -13,9 +13,7 @@ export interface Message {
 }
 
 // Lazy load section components
-const Capabilities = React.lazy(
-  () => import('@baodk-site/components/Capabilities'),
-);
+const Capabilities = React.lazy(() => import('@baodk-site/components/Capabilities'));
 const Projects = React.lazy(() => import('@baodk-site/components/Projects'));
 const Timeline = React.lazy(() => import('@baodk-site/components/Timeline'));
 const Testimonials = React.lazy(() => import('@baodk-site/components/Testimonials'));

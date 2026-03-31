@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { NAV_ITEMS } from '@baodk-site/data/navigation';
 import { handleNavClick } from '@baodk-site/utils/navigation';

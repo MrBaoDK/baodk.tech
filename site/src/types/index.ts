@@ -1,6 +1,9 @@
-export interface Technology {
+export interface BaseIcon {
+  icon: string | React.ComponentType<React.SVGProps<SVGSVGElement> & { size?: number | string }>;
+}
+
+export interface Technology extends BaseIcon {
   name: string;
-  logoSlug?: string;
 }
 
 export interface BaseContent {
@@ -8,10 +11,9 @@ export interface BaseContent {
   description: string;
 }
 
-export interface Capability extends BaseContent {
+export interface Capability extends BaseContent, BaseIcon {
   core: Technology[];
   utility: string[];
-  icon?: string; // Unified: emoji or Material Symbol name
 }
 
 export interface Project extends BaseContent {
@@ -47,8 +49,7 @@ export interface NavItem {
   footerLabel?: string;
 }
 
-export interface SocialItem extends NavItem {
-  icon: string;
+export interface SocialItem extends NavItem, BaseIcon {
   labels?: string[];
   order?: number;
 }

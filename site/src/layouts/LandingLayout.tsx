@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from '@baodk-site/components/Header';
+
 import Footer from '@baodk-site/components/Footer';
+import Header from '@baodk-site/components/Header';
 
 interface LandingLayoutProps {
   children: React.ReactNode;

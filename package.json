@@ -12,7 +12,7 @@
     "format:check": "pnpm --filter @mrbaodk/site format:check",
     "preinstall": "npx only-allow pnpm"
   },
-  "packageManager": "pnpm@10.30.0",
+  "packageManager": "pnpm@10.33.0",
   "repository": {
     "type": "git",
     "url": "git@github:MrBaoDK/baodk.tech"

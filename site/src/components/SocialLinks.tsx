@@ -1,4 +1,6 @@
 import React from 'react';
+
+import GenericIcon from '@baodk-site/components/GenericIcon';
 import { SOCIALS } from '@baodk-site/data/socials';
 
 interface SocialLinksProps {
@@ -28,9 +30,11 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ label, variant = 'icon', clas
               aria-label={social.label}
               title={social.label}
             >
-              <span className='material-symbols-outlined text-xl transition-transform group-hover:scale-110'>
-                {social.icon}
-              </span>
+              <GenericIcon
+                icon={social.icon}
+                className='text-xl transition-transform group-hover:scale-110'
+                size='md'
+              />
             </a>
           );
         }

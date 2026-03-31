@@ -1,9 +1,9 @@
 import React from 'react';
 
+import SocialLinks from '@baodk-site/components/SocialLinks';
 import { NAV_ITEMS } from '@baodk-site/data/navigation';
 import { SOCIALS } from '@baodk-site/data/socials';
 import { handleNavClick } from '@baodk-site/utils/navigation';
-import SocialLinks from './SocialLinks';
 
 interface FooterProps {
   simple?: boolean;

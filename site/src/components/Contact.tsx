@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
+import EmailProviderModal from '@baodk-site/components/EmailProviderModal';
+import SocialLinks from '@baodk-site/components/SocialLinks';
 import { SOCIALS } from '@baodk-site/data/socials';
-import SocialLinks from './SocialLinks';
-import EmailProviderModal from './EmailProviderModal';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({

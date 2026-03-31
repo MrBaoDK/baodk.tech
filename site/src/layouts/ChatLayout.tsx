@@ -1,4 +1,5 @@
 import React from 'react';
+
 import NavigationDock from '@baodk-site/components/NavigationDock';
 
 interface ChatLayoutProps {
