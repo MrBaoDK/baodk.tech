@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 import { SOCIALS } from '@baodk-site/data/socials';
@@ -15,6 +15,50 @@ interface EmailProviderModalProps {
 }
 
 const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose, formData }) => {
+  const modalRef = useRef<HTMLDivElement>(null);
+  const firstFocusableRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    const handleFocusTrap = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return;
+
+      const focusableElements = modalRef.current?.querySelectorAll(
+        'a[href], button:not([disabled])',
+      );
+      if (!focusableElements || focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (e.shiftKey && document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      } else if (!e.shiftKey && document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    document.addEventListener('keydown', handleFocusTrap);
+
+    // Focus first focusable element
+    firstFocusableRef.current?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleFocusTrap);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const recipient = SOCIALS.EMAIL.label;
@@ -51,15 +95,24 @@ const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose
   ];
 
   return createPortal(
-    <div className='fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 font-sans'>
+    <div
+      className='fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 font-sans'
+      role='dialog'
+      aria-modal='true'
+      aria-labelledby='email-modal-title'
+    >
       {/* Backdrop */}
       <div
         className='fixed inset-0 bg-black/60 backdrop-blur-xl transition-opacity duration-300'
         onClick={onClose}
+        aria-hidden='true'
       />
 
       {/* Modal Content */}
-      <div className='relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300'>
+      <div
+        ref={modalRef}
+        className='relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300'
+      >
         <div className='absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary)]/10 blur-3xl pointer-events-none' />
 
         <div className='relative z-10 flex flex-col items-center text-center'>
@@ -69,7 +122,10 @@ const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose
             </span>
           </div>
 
-          <h3 className='text-2xl font-black text-white mb-2 tracking-tight'>
+          <h3
+            id='email-modal-title'
+            className='text-2xl font-black text-white mb-2 tracking-tight'
+          >
             Choose Your Provider
           </h3>
           <p className='text-white/40 font-medium mb-8 text-sm'>
@@ -77,9 +133,10 @@ const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose
           </p>
 
           <div className='w-full space-y-3'>
-            {providers.map((provider) => (
+            {providers.map((provider, index) => (
               <a
                 key={provider.name}
+                ref={index === 0 ? firstFocusableRef : undefined}
                 href={provider.href}
                 target='_blank'
                 rel='noopener noreferrer'

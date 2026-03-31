@@ -106,8 +106,14 @@ const App: React.FC = () => {
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal, #about');
+    const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach((el) => observer.observe(el));
+
+    // Also observe the #about wrapper specifically for scroll tracking
+    const aboutElement = document.getElementById('about');
+    if (aboutElement && !Array.from(revealElements).includes(aboutElement)) {
+      observer.observe(aboutElement);
+    }
 
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
