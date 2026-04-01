@@ -36,13 +36,13 @@ export const handleNavClick = (
   }
 
   // Hash links (SPA routing)
-  if (href?.startsWith('/#')) {
+  if (href?.startsWith('#')) {
     e.preventDefault();
     const success = scrollToSection(id);
 
     if (success) {
       // Update hash manually without triggering a full page reload or doubling history
-      const newHash = id === 'about' ? '#/about' : `#/about#${id}`;
+      const newHash = id === 'about' ? '#' : `#${id}`;
       // Use replaceState to keep history clean during section scrolling
       window.history.replaceState(null, '', newHash);
 

@@ -4,7 +4,11 @@ import GenericIcon from '@baodk-site/components/GenericIcon';
 import { NAV_ITEMS } from '@baodk-site/data/navigation';
 import { handleNavClick } from '@baodk-site/utils/navigation';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onOpenChat: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onOpenChat }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
@@ -13,8 +17,8 @@ const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['about', 'skills', 'projects', 'experience', 'testimonials'];
-      const scrollPosition = window.scrollY + 100;
+      const sections = ['about', 'skills', 'projects', 'experience', 'testimonials', 'contact'];
+      const scrollPosition = window.scrollY + 150;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -34,7 +38,12 @@ const Header: React.FC = () => {
   const headerNavItems = NAV_ITEMS.filter((item) => item.whereUsed?.includes('header'));
 
   const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    if (id === 'ask-ai') return;
+    if (id === 'ask-ai') {
+      e.preventDefault();
+      onOpenChat();
+      setIsMenuOpen(false);
+      return;
+    }
 
     handleNavClick(e, id, (id) => {
       setActiveSection(id);
@@ -101,7 +110,7 @@ const Header: React.FC = () => {
 
           {/* Professional CTA */}
           <a
-            href='/#/about#contact'
+            href='#contact'
             onClick={(e) => onNavClick(e, 'contact')}
             className='hidden md:flex items-center gap-2 px-8 py-2 rounded-full bg-[var(--color-primary)] text-white font-black text-md uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline group -mb-3.5'
           >
@@ -138,7 +147,7 @@ const Header: React.FC = () => {
               </a>
             ))}
             <a
-              href='/#/about#contact'
+              href='#contact'
               onClick={(e) => {
                 onNavClick(e, 'contact');
               }}

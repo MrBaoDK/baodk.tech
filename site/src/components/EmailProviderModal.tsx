@@ -49,51 +49,61 @@ const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose
   ];
 
   return (
-    <GenericModal
-      isOpen={isOpen}
-      onClose={onClose}
-      showCloseButton={false}
-      title='Choose Your Provider'
-      description="Select how you'd like to send your inquiry. Your message is ready for review."
-      icon='mark_as_unread'
-    >
-      <div className='w-full space-y-3'>
-        {providers.map((provider) => (
-          <a
-            key={provider.name}
-            href={provider.href}
-            target='_blank'
-            rel='noopener noreferrer'
-            onClick={onClose}
-            className={`flex items-center gap-4 w-full p-4 rounded-2xl bg-white/[0.03] border border-white/5 transition-all duration-300 group ${provider.color}`}
-          >
-            <div className='w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform'>
-              {provider.isMaterial ? (
-                <span className='material-symbols-outlined text-white/60 group-hover:text-white'>
-                  {provider.icon}
-                </span>
-              ) : (
-                <img
-                  src={provider.icon}
-                  alt={provider.name}
-                  className='w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all'
-                />
-              )}
-            </div>
-            <span className='text-white font-bold tracking-tight'>{provider.name}</span>
-            <span className='material-symbols-outlined text-white/10 ml-auto group-hover:text-white/40 transition-colors'>
-              open_in_new
-            </span>
-          </a>
-        ))}
-      </div>
+    <GenericModal isOpen={isOpen} onClose={onClose}>
+      <div className='flex flex-col items-center text-center p-8'>
+        {/* Header */}
+        <div className='w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 shadow-lg'>
+          <span className='material-symbols-outlined text-[var(--color-primary)] text-3xl'>
+            mark_as_unread
+          </span>
+        </div>
+        <h3 className='text-2xl font-black text-white mb-2 tracking-tight uppercase italic'>
+          Choose Your Provider
+        </h3>
+        <p className='text-white/40 font-medium mb-8 text-sm uppercase tracking-widest leading-relaxed'>
+          Select how you'd like to send your inquiry. Your message is ready for review.
+        </p>
 
-      <button
-        onClick={onClose}
-        className='mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors'
-      >
-        Cancel and Return
-      </button>
+        {/* Provider list */}
+        <div className='w-full space-y-3'>
+          {providers.map((provider) => (
+            <a
+              key={provider.name}
+              href={provider.href}
+              target='_blank'
+              rel='noopener noreferrer'
+              onClick={onClose}
+              className={`flex items-center gap-4 w-full p-4 rounded-2xl bg-white/[0.03] border border-white/5 transition-all duration-300 group ${provider.color}`}
+            >
+              <div className='w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform'>
+                {provider.isMaterial ? (
+                  <span className='material-symbols-outlined text-white/60 group-hover:text-white'>
+                    {provider.icon}
+                  </span>
+                ) : (
+                  <img
+                    src={provider.icon}
+                    alt={provider.name}
+                    className='w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all'
+                  />
+                )}
+              </div>
+              <span className='text-white font-bold tracking-tight'>{provider.name}</span>
+              <span className='material-symbols-outlined text-white/10 ml-auto group-hover:text-white/40 transition-colors'>
+                open_in_new
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {/* Dismiss */}
+        <button
+          onClick={onClose}
+          className='mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors'
+        >
+          Cancel and Return
+        </button>
+      </div>
     </GenericModal>
   );
 };

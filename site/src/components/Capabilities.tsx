@@ -145,7 +145,7 @@ const Capabilities: React.FC = () => {
             Ready to leverage these capabilities for your next project?
           </p>
           <a
-            href='/#/about#contact'
+            href='#contact'
             onClick={(e) => onNavClick(e, 'contact')}
             className='px-12 py-5 bg-[var(--color-primary)] text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-[var(--color-primary)]/40 inline-block no-underline rounded-full'
           >

@@ -2,49 +2,49 @@ import { NavItem } from '@baodk-site/types';
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    href: '/#/about',
+    href: '#about',
     label: 'About',
     footerLabel: 'Go to top',
     id: 'about',
     whereUsed: ['header', 'footer'],
   },
   {
-    href: '/#/about#contact',
+    href: '#contact',
     label: 'Contact',
     id: 'contact',
     whereUsed: ['cta'],
   },
   {
-    href: '/#/about#skills',
+    href: '#skills',
     label: 'Skills',
     id: 'skills',
   },
   {
-    href: '/#/about#capabilities',
+    href: '#capabilities',
     label: 'Capabilities',
     id: 'capabilities',
     whereUsed: ['header'],
   },
   {
-    href: '/#/about#projects',
+    href: '#projects',
     label: 'Projects',
     id: 'projects',
     whereUsed: ['header', 'footer'],
   },
   {
-    href: '/#/about#experience',
+    href: '#experience',
     label: 'Experience',
     id: 'experience',
     whereUsed: ['header', 'footer'],
   },
   {
-    href: '/#/about#testimonials',
+    href: '#testimonials',
     label: 'Testimonials',
     id: 'testimonials',
     whereUsed: ['header'],
   },
   {
-    href: '/#/chat',
+    href: '#chat',
     label: 'Ask AI',
     id: 'ask-ai',
     whereUsed: ['header'],

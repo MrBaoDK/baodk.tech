@@ -9,7 +9,7 @@ interface ChatLayoutProps {
 
 const ChatLayout: React.FC<ChatLayoutProps> = ({ children, onSelectTopic }) => {
   return (
-    <div className='h-[100dvh] flex flex-col overflow-hidden bg-[var(--color-dark)]'>
+    <div className='h-full w-full flex flex-col overflow-hidden bg-transparent'>
       <main className='flex-1 relative z-10 w-full overflow-hidden flex flex-col'>{children}</main>
 
       {/* Integrated Navigation Dock - No longer floating */}

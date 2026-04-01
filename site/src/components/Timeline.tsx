@@ -94,7 +94,7 @@ const Timeline: React.FC = () => {
             Ready to add your success story to this timeline?
           </p>
           <a
-            href='/#/about#contact'
+            href='#contact'
             onClick={(e) => onNavClick(e, 'contact')}
             className='px-8 py-4 rounded-full border-2 border-[var(--color-primary)] text-[var(--color-primary)] font-bold uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all no-underline inline-block'
           >

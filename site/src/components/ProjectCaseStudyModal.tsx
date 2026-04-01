@@ -15,38 +15,53 @@ const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({ project, 
   const cs = project.caseStudy;
 
   return (
-    <GenericModal isOpen={!!project} onClose={onClose} className='max-w-2xl' showCloseButton={true}>
-      {/* Left-aligned header — override GenericModal's centered layout */}
-      <div className='w-full text-left'>
-        {/* Meta row */}
-        <div className='flex flex-wrap items-center gap-3 mb-4'>
-          {project.category && (
-            <span className='text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-3 py-1 rounded-full border border-[var(--color-primary)]/20'>
-              {project.category}
-            </span>
-          )}
-          {project.year && (
-            <span className='flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-white/30'>
-              <GenericIcon icon='calendar_today' size='sm' />
-              {project.year}
-            </span>
-          )}
-          {project.company && (
-            <span className='flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-white/30'>
-              <GenericIcon icon='corporate_fare' size='sm' />
-              {project.company}
-            </span>
-          )}
+    <GenericModal
+      isOpen={!!project}
+      onClose={onClose}
+      className='max-w-2xl max-h-[90vh] flex flex-col'
+    >
+      {/* Scrollable content area */}
+      <div className='overflow-y-auto overscroll-contain flex-1 p-5 sm:p-8 text-left'>
+        {/* Close + Meta row */}
+        <div className='flex items-start justify-between gap-4 mb-4'>
+          <div className='flex flex-wrap items-center gap-2'>
+            {project.category && (
+              <span className='text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary)] bg-[var(--color-primary)]/10 px-3 py-1 rounded-full border border-[var(--color-primary)]/20'>
+                {project.category}
+              </span>
+            )}
+            {project.year && (
+              <span className='flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-white/30'>
+                <GenericIcon icon='calendar_today' size='sm' />
+                {project.year}
+              </span>
+            )}
+            {project.company && (
+              <span className='flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-white/30'>
+                <GenericIcon icon='corporate_fare' size='sm' />
+                {project.company}
+              </span>
+            )}
+          </div>
+
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className='shrink-0 text-white/20 hover:text-white transition-colors'
+            aria-label='Close'
+          >
+            <GenericIcon icon='close' size='md' />
+          </button>
         </div>
 
         {/* Title */}
-        <h3 className='text-2xl font-black text-white mb-2 tracking-tight leading-tight'>
+        <h3 className='text-xl sm:text-2xl font-black text-white mb-2 tracking-tight leading-tight'>
           {project.title}
         </h3>
-        <p className='text-white/50 text-sm mb-8 leading-relaxed'>{project.description}</p>
+        <p className='text-white/50 text-sm mb-6 leading-relaxed'>{project.description}</p>
 
         {cs ? (
-          <div className='space-y-6'>
+          <div className='space-y-5'>
             {/* Problem */}
             <div>
               <p className='text-[10px] font-black uppercase tracking-[0.2em] text-[var(--color-primary)] mb-2'>
@@ -69,7 +84,9 @@ const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({ project, 
                 <p className='text-[10px] font-black uppercase tracking-[0.2em] text-white/30 mb-2'>
                   Architecture
                 </p>
-                <p className='text-white/60 text-xs leading-relaxed font-mono'>{cs.architecture}</p>
+                <p className='text-white/60 text-xs leading-relaxed font-mono break-words'>
+                  {cs.architecture}
+                </p>
               </div>
             )}
 
@@ -107,7 +124,7 @@ const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({ project, 
         )}
 
         {/* Technology chips */}
-        <div className='flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/5'>
+        <div className='flex flex-wrap gap-2 mt-6 pt-5 border-t border-white/5'>
           {project.technologies.map((tech, i) => (
             <span
               key={i}
@@ -118,13 +135,13 @@ const ProjectCaseStudyModal: React.FC<ProjectCaseStudyModalProps> = ({ project, 
           ))}
         </div>
 
-        {/* External link */}
+        {/* External link — full width on mobile */}
         {project.link && (
           <a
             href={project.link}
             target='_blank'
             rel='noopener noreferrer'
-            className='mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[var(--color-primary)] text-white text-xs font-black uppercase tracking-widest hover:opacity-90 transition-all hover:scale-105 no-underline'
+            className='mt-5 flex items-center justify-center gap-2 w-full sm:w-auto sm:inline-flex px-6 py-3 rounded-full bg-[var(--color-primary)] text-white text-xs font-black uppercase tracking-widest hover:opacity-90 transition-all hover:scale-105 no-underline'
           >
             <GenericIcon icon='open_in_new' size='sm' />
             {project.linkLabel ?? 'View Project'}

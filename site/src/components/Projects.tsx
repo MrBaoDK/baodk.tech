@@ -147,7 +147,7 @@ const Projects: React.FC = () => {
             Interested in similar results for your organization?
           </p>
           <a
-            href='/#/about#contact'
+            href='#contact'
             onClick={(e) => onNavClick(e, 'contact')}
             className='px-10 py-5 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:bg-[var(--color-primary)] hover:text-white transition-all hover:scale-105 shadow-xl inline-block no-underline'
           >

@@ -91,7 +91,7 @@ const Testimonials: React.FC = () => {
             Ready to join these satisfied partners?
           </p>
           <a
-            href='/#/about#contact'
+            href='#contact'
             onClick={(e) => onNavClick(e, 'contact')}
             className='px-12 py-5 rounded-full bg-[var(--color-primary)] text-white font-black text-sm uppercase tracking-widest hover:scale-105 transition-all shadow-2xl shadow-[var(--color-primary)]/40 no-underline inline-block'
           >

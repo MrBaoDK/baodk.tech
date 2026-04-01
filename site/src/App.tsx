@@ -3,6 +3,7 @@ import React, { Suspense, useCallback, useEffect, useState } from 'react';
 import ChatAssistant from '@baodk-site/components/chat/ChatAssistant';
 import ChatHero from '@baodk-site/components/ChatHero';
 import LiquidGrid from '@baodk-site/components/effects/LiquidGrid';
+import GenericModal from '@baodk-site/components/GenericModal';
 import LandingHero from '@baodk-site/components/LandingHero';
 import ChatLayout from '@baodk-site/layouts/ChatLayout';
 import LandingLayout from '@baodk-site/layouts/LandingLayout';
@@ -30,34 +31,44 @@ const SectionLoader: React.FC = () => (
 );
 
 const App: React.FC = () => {
-  const [currentRoute, setCurrentRoute] = useState(window.location.hash || '#/about');
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
   // Hash Routing & Animation Logic
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash || '#/about';
-      setCurrentRoute(hash);
+      const hash = window.location.hash || '#about';
 
-      // Handle scroll to anchor if present (e.g., #/about#projects)
-      if (hash.includes('#', 2)) {
-        const anchorId = hash.split('#').pop();
-        if (anchorId) {
-          // Use setTimeout to ensure lazy elements are rendered or layout is stable
-          setTimeout(() => {
-            scrollToSection(anchorId);
-          }, 100);
-        }
-      } else if (hash === '#/about') {
+      // Support legacy #/about paths and #/chat
+      if (hash.startsWith('#/about')) {
+        const cleanHash = hash.replace('#/about', '') || '#about';
+        window.history.replaceState(null, '', cleanHash);
+        return;
+      }
+
+      if (hash === '#chat') {
+        setIsChatOpen(true);
+        // Don't change current route for chat modal, just open it
+        // and optionally clear the hash to keep it clean, or keep it for deep links
+        return;
+      }
+
+      const anchorId = hash.replace('#', '');
+      if (anchorId) {
+        // Use setTimeout to ensure lazy elements are rendered or layout is stable
+        setTimeout(() => {
+          scrollToSection(anchorId);
+        }, 150);
+      } else {
         window.scrollTo({ top: 0 });
       }
     };
 
     const isRootPath =
       window.location.pathname === '/' || window.location.pathname === '/index.html';
-    if (isRootPath && (!window.location.hash || window.location.hash === '#/')) {
-      window.location.hash = '#/about';
+    if (isRootPath && !window.location.hash) {
+      window.location.hash = '#about';
     }
 
     window.addEventListener('hashchange', handleHashChange);
@@ -77,13 +88,11 @@ const App: React.FC = () => {
           entry.target.classList.add('active');
 
           // Update hash as user scrolls through sections
-          if (window.location.hash.startsWith('#/about')) {
-            const id = entry.target.id;
-            if (id && id !== 'about' && id !== 'hero') {
-              window.history.replaceState(null, '', `#/about#${id}`);
-            } else if (id === 'about' || id === 'hero') {
-              window.history.replaceState(null, '', `#/about`);
-            }
+          const id = entry.target.id;
+          if (id && id !== 'hero' && !isChatOpen) {
+            window.history.replaceState(null, '', `#${id}`);
+          } else if ((id === 'hero' || id === 'about') && !isChatOpen) {
+            window.history.replaceState(null, '', `#about`);
           }
         }
       });
@@ -102,7 +111,7 @@ const App: React.FC = () => {
       window.removeEventListener('hashchange', handleHashChange);
       observer.disconnect();
     };
-  }, [currentRoute]); // Re-run when route changes to catch new elements
+  }, [isChatOpen]); // Re-run when chat closes to resume scroll tracking
 
   const handleSendMessage = useCallback((content: string) => {
     setMessages((prev) => [...prev, { role: 'user', content }]);
@@ -122,74 +131,72 @@ const App: React.FC = () => {
     }, 1000);
   }, []);
 
-  const handleSelectTopic = useCallback((topic: string) => {
-    if (topic === 'contact') {
-      window.location.hash = '#/about#contact';
-      return;
-    }
-    const topicResponses: Record<string, string> = {
-      experience:
-        'Bao specializes in Data & Quality Engineering, with deep expertise in Python, SQL, and automated testing frameworks.',
-      skills:
-        'Technical stack includes React 19, Tailwind 4.0, Python, and cloud-native MLOps architectures.',
-      projects: 'From building indie tools with 10K+ users to internal enterprise platforms.',
-      testimonials:
-        'Known for technical excellence and measurable business impact across diverse teams.',
-      contact: 'You can book a call via Calendly or message Bao directly on LinkedIn!',
-    };
+  const handleSelectTopic = useCallback(
+    (topic: string) => {
+      if (topic === 'contact') {
+        setIsChatOpen(false);
+        setTimeout(() => {
+          window.location.hash = '#contact';
+        }, 300);
+        return;
+      }
 
-    setMessages((prev) => [
-      ...prev,
-      { role: 'user', content: `Tell me about ${topic}...` },
-      { role: 'ai', content: topicResponses[topic] || 'How can I help you today?' },
-    ]);
+      const topicResponses: Record<string, string> = {
+        experience:
+          'Bao specializes in Data & Quality Engineering, with deep expertise in Python, SQL, and automated testing frameworks.',
+        skills:
+          'Technical stack includes React 19, Tailwind 4.0, Python, and cloud-native MLOps architectures.',
+        projects: 'From building indie tools with 10K+ users to internal enterprise platforms.',
+        testimonials:
+          'Known for technical excellence and measurable business impact across diverse teams.',
+        contact: 'You can book a call via Calendly or message Bao directly on LinkedIn!',
+      };
 
-    if (window.location.hash !== '#/chat') {
-      window.location.hash = '#/chat';
-    }
-  }, []);
+      setMessages((prev) => [
+        ...prev,
+        { role: 'user', content: `Tell me about ${topic}...` },
+        { role: 'ai', content: topicResponses[topic] || 'How can I help you today?' },
+      ]);
 
-  const renderLandingContent = () => {
-    if (currentRoute.startsWith('#/about')) {
-      return (
-        <div className='landing-page-content'>
-          <div id='about'>
-            <LandingHero onStartChat={() => (window.location.hash = '#/chat')} />
-          </div>
-          <div id='capabilities' className='reveal'>
-            <Suspense fallback={<SectionLoader />}>
-              <Capabilities />
-            </Suspense>
-          </div>
-          <div id='projects' className='reveal'>
-            <Suspense fallback={<SectionLoader />}>
-              <Projects />
-            </Suspense>
-          </div>
-          <div id='experience' className='reveal'>
-            <Suspense fallback={<SectionLoader />}>
-              <Timeline />
-            </Suspense>
-          </div>
-          <div id='testimonials' className='reveal'>
-            <Suspense fallback={<SectionLoader />}>
-              <Testimonials />
-            </Suspense>
-          </div>
-          <div id='contact' className='reveal'>
-            <Suspense fallback={<SectionLoader />}>
-              <Contact />
-            </Suspense>
-          </div>
-        </div>
-      );
-    }
+      if (!isChatOpen) {
+        setIsChatOpen(true);
+      }
+    },
+    [isChatOpen],
+  );
 
-    // Fallback for direct section access if needed, though they are now part of #/about
-    return <LandingHero onStartChat={() => (window.location.hash = '#/chat')} />;
-  };
-
-  const isChatMode = currentRoute.startsWith('#/chat');
+  const renderLandingContent = () => (
+    <div className='landing-page-content'>
+      <div id='about'>
+        <LandingHero onStartChat={() => setIsChatOpen(true)} />
+      </div>
+      <div id='capabilities' className='reveal'>
+        <Suspense fallback={<SectionLoader />}>
+          <Capabilities />
+        </Suspense>
+      </div>
+      <div id='projects' className='reveal'>
+        <Suspense fallback={<SectionLoader />}>
+          <Projects />
+        </Suspense>
+      </div>
+      <div id='experience' className='reveal'>
+        <Suspense fallback={<SectionLoader />}>
+          <Timeline />
+        </Suspense>
+      </div>
+      <div id='testimonials' className='reveal'>
+        <Suspense fallback={<SectionLoader />}>
+          <Testimonials />
+        </Suspense>
+      </div>
+      <div id='contact' className='reveal'>
+        <Suspense fallback={<SectionLoader />}>
+          <Contact />
+        </Suspense>
+      </div>
+    </div>
+  );
 
   const isRootPath = window.location.pathname === '/' || window.location.pathname === '/index.html';
 
@@ -201,21 +208,27 @@ const App: React.FC = () => {
     <div className='min-h-screen bg-[var(--color-dark)] relative'>
       <LiquidGrid />
 
-      {isChatMode ? (
+      <LandingLayout onOpenChat={() => setIsChatOpen(true)}>{renderLandingContent()}</LandingLayout>
+
+      {/* Chat Modal */}
+      <GenericModal
+        isOpen={isChatOpen}
+        onClose={() => setIsChatOpen(false)}
+        className='max-w-5xl h-[85vh]'
+      >
         <ChatLayout onSelectTopic={handleSelectTopic}>
           {messages.length === 0 ? (
-            <ChatHero onSendMessage={handleSendMessage} />
+            <ChatHero onSendMessage={handleSendMessage} onClose={() => setIsChatOpen(false)} />
           ) : (
             <ChatAssistant
               messages={messages}
               onSendMessage={handleSendMessage}
+              onClose={() => setIsChatOpen(false)}
               isProcessing={isProcessing}
             />
           )}
         </ChatLayout>
-      ) : (
-        <LandingLayout>{renderLandingContent()}</LandingLayout>
-      )}
+      </GenericModal>
     </div>
   );
 };
