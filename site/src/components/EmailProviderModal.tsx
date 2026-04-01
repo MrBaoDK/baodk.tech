@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
+import React from 'react';
 
+import GenericModal from '@baodk-site/components/GenericModal';
 import { SOCIALS } from '@baodk-site/data/socials';
 
 interface EmailProviderModalProps {
@@ -15,52 +15,6 @@ interface EmailProviderModalProps {
 }
 
 const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose, formData }) => {
-  const modalRef = useRef<HTMLDivElement>(null);
-  const firstFocusableRef = useRef<HTMLAnchorElement>(null);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    const handleFocusTrap = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-
-      const focusableElements = modalRef.current?.querySelectorAll(
-        'a[href], button:not([disabled])',
-      );
-      if (!focusableElements || focusableElements.length === 0) return;
-
-      const firstElement = focusableElements[0] as HTMLElement;
-      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-
-      if (e.shiftKey && document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement.focus();
-      } else if (!e.shiftKey && document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement.focus();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    document.addEventListener('keydown', handleFocusTrap);
-
-    // Focus first focusable element
-    firstFocusableRef.current?.focus();
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('keydown', handleFocusTrap);
-    };
-  }, [isOpen, onClose]);
-
-  if (!isOpen) return null;
-
   const recipient = SOCIALS.EMAIL.label;
   const subject = encodeURIComponent(
     `Inquiry from ${formData.name} (${formData.company || 'Individual'})`,
@@ -94,86 +48,53 @@ const EmailProviderModal: React.FC<EmailProviderModalProps> = ({ isOpen, onClose
     },
   ];
 
-  return createPortal(
-    <div
-      className='fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 font-sans'
-      role='dialog'
-      aria-modal='true'
-      aria-labelledby='email-modal-title'
+  return (
+    <GenericModal
+      isOpen={isOpen}
+      onClose={onClose}
+      showCloseButton={false}
+      title='Choose Your Provider'
+      description="Select how you'd like to send your inquiry. Your message is ready for review."
+      icon='mark_as_unread'
     >
-      {/* Backdrop */}
-      <div
-        className='fixed inset-0 bg-black/60 backdrop-blur-xl transition-opacity duration-300'
-        onClick={onClose}
-        aria-hidden='true'
-      />
-
-      {/* Modal Content */}
-      <div
-        ref={modalRef}
-        className='relative w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-3xl p-8 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300'
-      >
-        <div className='absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary)]/10 blur-3xl pointer-events-none' />
-
-        <div className='relative z-10 flex flex-col items-center text-center'>
-          <div className='w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6'>
-            <span className='material-symbols-outlined text-[var(--color-primary)] text-3xl'>
-              mark_as_unread
-            </span>
-          </div>
-
-          <h3
-            id='email-modal-title'
-            className='text-2xl font-black text-white mb-2 tracking-tight'
-          >
-            Choose Your Provider
-          </h3>
-          <p className='text-white/40 font-medium mb-8 text-sm'>
-            Select how you'd like to send your inquiry. Your message is ready for review.
-          </p>
-
-          <div className='w-full space-y-3'>
-            {providers.map((provider, index) => (
-              <a
-                key={provider.name}
-                ref={index === 0 ? firstFocusableRef : undefined}
-                href={provider.href}
-                target='_blank'
-                rel='noopener noreferrer'
-                onClick={onClose}
-                className={`flex items-center gap-4 w-full p-4 rounded-2xl bg-white/[0.03] border border-white/5 transition-all duration-300 group ${provider.color}`}
-              >
-                <div className='w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform'>
-                  {provider.isMaterial ? (
-                    <span className='material-symbols-outlined text-white/60 group-hover:text-white'>
-                      {provider.icon}
-                    </span>
-                  ) : (
-                    <img
-                      src={provider.icon}
-                      alt={provider.name}
-                      className='w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all'
-                    />
-                  )}
-                </div>
-                <span className='text-white font-bold tracking-tight'>{provider.name}</span>
-                <span className='material-symbols-outlined text-white/10 ml-auto group-hover:text-white/40 transition-colors'>
-                  open_in_new
-                </span>
-              </a>
-            ))}
-          </div>
-
-          <button
+      <div className='w-full space-y-3'>
+        {providers.map((provider) => (
+          <a
+            key={provider.name}
+            href={provider.href}
+            target='_blank'
+            rel='noopener noreferrer'
             onClick={onClose}
-            className='mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors'
+            className={`flex items-center gap-4 w-full p-4 rounded-2xl bg-white/[0.03] border border-white/5 transition-all duration-300 group ${provider.color}`}
           >
-            Cancel and Return
-          </button>
-        </div>
+            <div className='w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform'>
+              {provider.isMaterial ? (
+                <span className='material-symbols-outlined text-white/60 group-hover:text-white'>
+                  {provider.icon}
+                </span>
+              ) : (
+                <img
+                  src={provider.icon}
+                  alt={provider.name}
+                  className='w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all'
+                />
+              )}
+            </div>
+            <span className='text-white font-bold tracking-tight'>{provider.name}</span>
+            <span className='material-symbols-outlined text-white/10 ml-auto group-hover:text-white/40 transition-colors'>
+              open_in_new
+            </span>
+          </a>
+        ))}
       </div>
-    </div>,
-    document.body,
+
+      <button
+        onClick={onClose}
+        className='mt-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors'
+      >
+        Cancel and Return
+      </button>
+    </GenericModal>
   );
 };
 
