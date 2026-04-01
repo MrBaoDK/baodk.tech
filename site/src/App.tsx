@@ -19,6 +19,8 @@ const Timeline = React.lazy(() => import('@baodk-site/components/Timeline'));
 const Testimonials = React.lazy(() => import('@baodk-site/components/Testimonials'));
 const Contact = React.lazy(() => import('@baodk-site/components/Contact'));
 
+import { scrollToSection } from '@baodk-site/utils/navigation';
+
 import '@baodk-site/styles/globals.css';
 
 const SectionLoader: React.FC = () => (
@@ -31,25 +33,6 @@ const App: React.FC = () => {
   const [currentRoute, setCurrentRoute] = useState(window.location.hash || '#/about');
   const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
-
-  const scrollToSection = useCallback((id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 100;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-      });
-
-      // Update hash without triggering hashchange event
-      const newHash = `#/about#${id}`;
-      if (window.location.hash !== newHash) {
-        window.history.replaceState(null, '', newHash);
-      }
-    }
-  }, []);
 
   // Hash Routing & Animation Logic
   useEffect(() => {
@@ -119,7 +102,7 @@ const App: React.FC = () => {
       window.removeEventListener('hashchange', handleHashChange);
       observer.disconnect();
     };
-  }, [currentRoute, scrollToSection]); // Re-run when route changes to catch new elements
+  }, [currentRoute]); // Re-run when route changes to catch new elements
 
   const handleSendMessage = useCallback((content: string) => {
     setMessages((prev) => [...prev, { role: 'user', content }]);

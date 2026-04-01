@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import GenericIcon from '@baodk-site/components/GenericIcon';
 import { NAV_ITEMS } from '@baodk-site/data/navigation';
 import { handleNavClick } from '@baodk-site/utils/navigation';
 
@@ -45,7 +46,7 @@ const Header: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled || isMenuOpen
-          ? 'bg-black/80 backdrop-blur-xl py-4 border-b border-white/10 shadow-2xl'
+          ? 'bg-black/80 backdrop-blur-xl py-1 border-b border-white/10 shadow-2xl'
           : 'bg-transparent py-8'
       }`}
     >
@@ -58,7 +59,7 @@ const Header: React.FC = () => {
             className='flex items-center gap-2 md:gap-4 no-underline relative'
           >
             {/* Main logo: large, slight overlap */}
-            <span className='inline-flex items-center justify-center shadow-2xl w-14 h-14 -mb-2.5 group'>
+            <span className='inline-flex items-center justify-center shadow-2xl w-14 h-14 -mb-3.5 group'>
               <img
                 src='/logo/logo_head.svg'
                 alt='Bao DK logo'
@@ -102,10 +103,13 @@ const Header: React.FC = () => {
           <a
             href='/#/about#contact'
             onClick={(e) => onNavClick(e, 'contact')}
-            className='hidden md:flex items-center gap-2 px-6 py-1 rounded-full bg-[var(--color-primary)] text-white font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline'
+            className='hidden md:flex items-center gap-2 px-8 py-2 rounded-full bg-[var(--color-primary)] text-white font-black text-md uppercase tracking-widest hover:scale-105 transition-transform shadow-lg shadow-[var(--color-primary)]/20 no-underline group -mb-3.5'
           >
             Hire Me
-            <span className='material-symbols-outlined text-sm'>work</span>
+            <GenericIcon
+              icon='work'
+              className='group-hover:rotate-19 transition-all duration-300'
+            />
           </a>
 
           {/* Mobile Menu Button */}

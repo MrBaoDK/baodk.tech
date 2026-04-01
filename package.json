@@ -6,7 +6,7 @@
     "dev": "pnpm --filter @mrbaodk/site start",
     "build": "pnpm --filter @mrbaodk/site build",
     "preview": "pnpm --filter @mrbaodk/site preview",
-    "deploy": "pnpm --filter @mrbaodk/site run deploy",
+    "gh-deploy": "pnpm --filter @mrbaodk/site gh-deploy",
     "lint": "pnpm --filter @mrbaodk/site lint",
     "format": "pnpm --filter @mrbaodk/site format",
     "format:check": "pnpm --filter @mrbaodk/site format:check",
