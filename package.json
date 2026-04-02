@@ -6,9 +6,13 @@
     "dev": "pnpm --filter @mrbaodk/site start",
     "build": "pnpm --filter @mrbaodk/site build",
     "preview": "pnpm --filter @mrbaodk/site preview",
-    "deploy": "pnpm --filter @mrbaodk/site deploy"
+    "gh-deploy": "pnpm --filter @mrbaodk/site gh-deploy",
+    "lint": "pnpm --filter @mrbaodk/site lint",
+    "format": "pnpm --filter @mrbaodk/site format",
+    "format:check": "pnpm --filter @mrbaodk/site format:check",
+    "preinstall": "npx only-allow pnpm"
   },
-  "packageManager": "pnpm@10.30.0",
+  "packageManager": "pnpm@10.33.0",
   "repository": {
     "type": "git",
     "url": "git@github:MrBaoDK/baodk.tech"

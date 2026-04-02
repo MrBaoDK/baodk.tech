@@ -100,7 +100,7 @@ const LiquidGrid: React.FC = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 pointer-events-none"
+      className='fixed inset-0 z-0 pointer-events-none'
       style={{ opacity: 0.8 }}
     />
   );

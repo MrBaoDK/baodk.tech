@@ -2,51 +2,53 @@ import { TimelineItem } from '@baodk-site/types';
 
 export const careerTimeline: TimelineItem[] = [
   {
-    year: "2023 - Present",
-    title: "Senior Full Stack Data Engineer",
-    company: "TechFlow Solutions",
-    description: "Leading AI integration projects and architecting scalable data solutions for enterprise clients",
+    year: '2025 - Present',
+    title: 'Power BI Coach (1-1)',
+    company: 'Freelance - Havas Paris',
+    description:
+      'Mentoring BI developers on advanced DAX, data modeling, and visualization best practices for marketing analytics.',
     achievements: [
-      "Led development of AI-powered analytics platform serving 10K+ users",
-      "Mentored team of 5 engineers in modern data engineering practices",
-      "Implemented MLOps pipeline reducing model deployment time by 75%",
-      "Architected microservices handling 50M+ API calls monthly"
-    ]
+      'Provided 1-1 coaching for BI developers at Havas Paris',
+      'Restructured data models cutting build time from 2 days to <1 day',
+      'Optimized DAX measures for complex campaign performance tracking',
+      'Established data modeling standards for sustainable dashboard growth',
+    ],
   },
   {
-    year: "2021 - 2023",
-    title: "Data & Quality Engineer",
-    company: "DataCore Systems",
-    description: "Built automated testing frameworks and robust data validation pipelines for financial services",
+    year: '2015 - Present',
+    title: 'Quality System & Data Engineer',
+    company: 'Jabil',
+    description:
+      'Architecting data solutions and automating quality reporting in a high-volume electronics manufacturing environment.',
     achievements: [
-      "Designed comprehensive test automation suite with 95% coverage",
-      "Implemented real-time data quality monitoring system",
-      "Reduced production incidents by 60% through proactive quality measures",
-      "Built ETL pipelines processing 2M+ records daily with zero downtime"
-    ]
+      'Built 20+ Power BI dashboards cutting manual effort by 60%',
+      'Designed end-to-end ETL/ELT pipelines for MES and SAP data integration',
+      'Automated labor performance tracking reducing review time by 90%',
+      'Maintained 95%+ uptime for mission-critical production dashboards',
+    ],
   },
   {
-    year: "2019 - 2021",
-    title: "DevOps Engineer",
-    company: "CloudFirst Inc.",
-    description: "Implemented CI/CD pipelines and cloud infrastructure automation for SaaS applications",
+    year: '2027 (Expected)',
+    title: 'Bachelor of Business Administration',
+    company: 'Hanoi Open University',
+    description:
+      'Focusing on the intersection of business strategy and data-driven decision making.',
     achievements: [
-      "Automated deployment processes reducing release time by 80%",
-      "Implemented Infrastructure as Code using Terraform and AWS",
-      "Built monitoring and alerting systems improving system reliability",
-      "Led migration of legacy systems to containerized microservices"
-    ]
+      'Applying analytical frameworks to business operations',
+      'Bridging the gap between technical data and business value',
+      'Focusing on organizational efficiency and scalability',
+    ],
   },
   {
-    year: "2017 - 2019",
-    title: "Software Developer",
-    company: "InnovateTech",
-    description: "Developed full-stack applications with focus on data integration and user experience",
+    year: '2024',
+    title: 'Specialization in Data Engineering',
+    company: 'FUNiX (FPT)',
+    description:
+      'Advanced certification focusing on modern data engineering stacks and high-scale data processing.',
     achievements: [
-      "Built responsive web applications using React and Python",
-      "Integrated third-party APIs and data sources",
-      "Implemented automated testing and code quality practices",
-      "Collaborated with cross-functional teams on product development"
-    ]
-  }
+      'Mastered E2E data pipeline construction and management',
+      'Applied modern ETL/ELT patterns for complex datasets',
+      'Developed expertise in scalable database design and optimization',
+    ],
+  },
 ];

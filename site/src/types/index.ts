@@ -1,28 +1,51 @@
-// Core interfaces matching the markdown specifications
-export interface Skill {
-  title: string;
-  description: string;
-  technologies: string[];
-  icon?: string;
+export interface BaseIcon {
+  icon: string | React.ComponentType<React.SVGProps<SVGSVGElement> & { size?: number | string }>;
 }
 
-export interface TechnicalCapability extends Skill {
-  icon: string;
+export interface Technology extends BaseIcon {
+  name: string;
 }
 
-export interface Project {
+export interface BaseContent {
   title: string;
   description: string;
-  technologies: string[];
+}
+
+export interface Capability extends BaseContent, BaseIcon {
+  core: Technology[];
+  utility: string[];
+}
+
+export interface CaseStudySection {
+  heading: string;
+  body: string;
+}
+
+export interface Project extends BaseContent {
+  technologies: string[]; // Keeping as string[] for now per user feedback
   impact: string;
   category?: string;
+  /** Year range, e.g. "2024" or "2023 – 2024" */
+  year?: string;
+  /** Organisation / industry context shown on the card */
+  company?: string;
+  /** Optional live demo or GitHub link */
+  link?: string;
+  /** Label for external link button, e.g. "GitHub" | "Live Demo" */
+  linkLabel?: string;
+  /** Rich case-study content shown in the modal */
+  caseStudy?: {
+    problem: string;
+    solution: string;
+    architecture?: string;
+    results: string[];
+    sections?: CaseStudySection[];
+  };
 }
 
-export interface Experience {
+export interface Experience extends BaseContent {
   year: string;
-  title: string;
   company: string;
-  description: string;
 }
 
 export interface TimelineItem extends Experience {
@@ -31,30 +54,23 @@ export interface TimelineItem extends Experience {
 
 export interface Testimonial {
   name: string;
-  role: string; // e.g., client, colleague, manager
-  location: string; // country or region
+  role: string;
+  location: string;
   content: string;
-  logo: string; // short initials or flag-like token
+  logo: string;
 }
 
-// Navigation and UI interfaces
+export type NavLocation = 'header' | 'footer' | 'cta';
+
 export interface NavItem {
   href: string;
   label: string;
+  id: string;
+  whereUsed?: NavLocation[];
+  footerLabel?: string;
 }
 
-export interface SocialItem extends NavItem {
-  icon: string;
+export interface SocialItem extends NavItem, BaseIcon {
   labels?: string[];
-}
-
-export interface ContactInfo {
-  email: string;
-  phone?: string;
-  location?: string;
-  social: {
-    github?: string;
-    linkedin?: string;
-    twitter?: string;
-  };
+  order?: number;
 }
