@@ -2,6 +2,41 @@ import type { Project } from '@baodk-site/types';
 
 export const projects: Project[] = [
   {
+    title: 'Affiliate Machine – AI-Powered Bio-Link Ecosystem',
+    description:
+      'A high-scale, distributed monorepo platform for affiliate marketers, featuring automated product discovery, AI-driven content generation, and real-time analytics.',
+    technologies: [
+      'Next.js',
+      'Fastify',
+      'PostgreSQL',
+      'ClickHouse',
+      'Redis',
+      'BullMQ',
+      'Drizzle ORM',
+      'Docker',
+      'Turbo',
+    ],
+    impact:
+      'Distributed architecture with 5+ specialized microservices; AI-automated content creation for social platforms; real-time performance tracking with ClickHouse analytics.',
+    category: ['Software Engineering', 'AI/Automation'],
+    year: '2026',
+    company: 'Personal · Indie Project',
+    caseStudy: {
+      problem:
+        'Affiliate marketers often struggle with fragmented tools for link management, content creation, and performance tracking, leading to operational bottlenecks and inconsistent branding.',
+      solution:
+        'Developed a unified, AI-driven ecosystem that centralizes the entire affiliate workflow—from automated product "Viral Score" assessment to multi-platform content generation and consolidated analytics.',
+      architecture:
+        'Distributed Monorepo (Turbo) · Fastify API · Next.js (Gallery & Console) · BullMQ workers for background tasks · Hybrid storage (PostgreSQL/ClickHouse/Redis/MinIO).',
+      results: [
+        'Automated ingestion of high-potential products from top marketplaces',
+        'Streamlined "Click-to-Content" workflow via AI-assisted script generation',
+        'High-concurrency ready with Redis-based job queuing and worker scaling',
+        'Consolidated analytics dashboard for cross-platform conversion tracking',
+      ],
+    },
+  },
+  {
     title: 'Drag Master – Kahoot-Inspired Real-time PvP',
     description:
       'A Kahoot-inspired multiplayer drag-and-drop game designed for interactive knowledge assessment and real-time competitive learning in group activities.',
@@ -19,7 +54,7 @@ export const projects: Project[] = [
       'Ensures sub-100ms real-time synchronization; 18+ game logic tests; rapid-deployment architecture for interactive education and group knowledge sharing.',
     category: 'Software Engineering',
     year: '2025',
-    company: 'Personal · Open Source',
+    company: 'Personal · Indie Project',
     link: 'https://github.com/MrBaoDK/dnd-pvp',
     linkLabel: 'GitHub',
     caseStudy: {
@@ -41,25 +76,35 @@ export const projects: Project[] = [
   {
     title: 'CDGA – AI-Assisted Document Gap Analysis',
     description:
-      'End-to-end AI workflow integrating OCR, LLM parsing, classification, markdown processing, dashboards, and automated notifications to automate compliance document review.',
-    technologies: ['Python', 'FastAPI', 'LangChain', 'OpenAI', 'PostgreSQL', 'Redis', 'Docker'],
+      'Enterprise-grade document analysis platform using LlamaIndex and React to automate version comparison and identify compliance gaps in multi-page industrial specifications.',
+    technologies: [
+      'Python (FastAPI)',
+      'React 18',
+      'TypeScript',
+      'LlamaIndex',
+      'PostgreSQL',
+      'Pandoc',
+      'Docker',
+      'UV',
+    ],
     impact:
-      'Cut manual document handling by 60% — saving ~120 hrs/month across 3 compliance teams; accelerated time-to-compliance review by 40%.',
-    category: 'AI/Automation',
+      'Accelerated time-to-compliance review by 40% and cut manual document handling by 60% (~120 hrs/month) via automated DOCX structure analysis.',
+    category: ['AI/Automation', 'Software Engineering'],
     year: '2024',
     company: 'Jabil · Electronics Manufacturing',
     caseStudy: {
       problem:
         'Compliance teams at a Fortune 500 contract manufacturer were manually cross-referencing hundreds of multi-page supplier and quality documents against regulatory checklists — an error-prone process taking days per audit cycle.',
       solution:
-        'Built a fully automated pipeline: OCR extracts text from scanned PDFs → LangChain + OpenAI classifies clause types and maps them to regulatory gaps → FastAPI serves results to a live dashboard with email/Slack notifications for flagged items.',
+        'Developed a high-performance pipeline using Pandoc for DOCX structure extraction and LlamaIndex for intelligent gap analysis, surfacing results via a custom administrative dashboard with automated notifications.',
       architecture:
-        'Celery task queue on Redis · async FastAPI backend · PostgreSQL for audit trail · Docker Compose for reproducible deployment · Power BI report layer on top of the PostgreSQL views.',
+        'Domain-Driven Design (DDD) · Custom Python Job Scheduler (Priority Queues) · FastAPI · React + Vite frontend · LDAP Enterprise Auth.',
       results: [
-        'Reduced manual document handling by 60% (~120 hrs/month saved)',
-        'Accelerated compliance review cycles by 40%',
-        '3 compliance teams onboarded with zero re-training requirement',
-        'Audit trail persisted in PostgreSQL for regulatory traceability',
+        'Automated structure extraction from multi-format documents (DOCX/MD)',
+        'Custom Job Scheduler with real-time monitoring dashboard and priority queues',
+        'Integrated LDAP / Enterprise Auth for seamless identity management',
+        '60% reduction in manual document handling and 40% faster review cycles',
+        'Audit trail persisted in PostgreSQL for full regulatory traceability',
       ],
     },
   },
@@ -117,7 +162,7 @@ export const projects: Project[] = [
     ],
     impact:
       'Improved FAI timeliness by 50%; prevented multiple high-cost inspection delays through proactive build plan notifications and real-time Kafka-driven monitoring.',
-    category: 'AI/Automation',
+    category: ['AI/Automation', 'Analytics'],
     year: '2023',
     company: 'Jabil · Electronics Manufacturing',
     caseStudy: {
@@ -262,7 +307,7 @@ export const projects: Project[] = [
       'Lighthouse score 95+; sub-1s first paint; fully responsive from 320px to 4K; CI/CD pipeline deploys on every push to main.',
     category: 'AI/Automation',
     year: '2025',
-    company: 'Personal · Open Source',
+    company: 'Personal · Side Project',
     link: 'https://github.com/MrBaoDK/baodk.tech',
     linkLabel: 'GitHub',
     caseStudy: {
