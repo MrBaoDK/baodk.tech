@@ -2,6 +2,43 @@ import type { Project } from '@baodk-site/types';
 
 export const projects: Project[] = [
   {
+    title: 'Drag Master – Kahoot-Inspired Real-time PvP',
+    description:
+      'A Kahoot-inspired multiplayer drag-and-drop game designed for interactive knowledge assessment and real-time competitive learning in group activities.',
+    technologies: [
+      'React',
+      'TypeScript',
+      'NestJS',
+      'PostgreSQL',
+      'Redis',
+      'Socket.io',
+      'Vite',
+      'pnpm',
+    ],
+    impact:
+      'Ensures sub-100ms real-time synchronization; 18+ game logic tests; rapid-deployment architecture for interactive education and group knowledge sharing.',
+    category: 'Software Engineering',
+    year: '2025',
+    company: 'Personal · Open Source',
+    link: 'https://github.com/MrBaoDK/dnd-pvp',
+    linkLabel: 'GitHub',
+    caseStudy: {
+      problem:
+        'Interactive learning platforms like Kahoot are highly effective but often lack diverse interaction models beyond multiple choice for complex knowledge assessment.',
+      solution:
+        'Developed a "Kahoot-like" framework specifically for drag-and-drop mechanics, utilizing NestJS and WebSockets to provide a frictionless, real-time competitive environment.',
+      architecture:
+        'NestJS + WebSocket Gateway · Redis session store · PostgreSQL DB · React + Vite frontend · Optimized for rapid one-click deployment.',
+      results: [
+        'Achieved sub-100ms real-time synchronization latency',
+        'Built for rapid deployment in knowledge-sharing / training sessions',
+        'Implemented robust role-based routing (Host/Player/Simulation)',
+        'Automated scoring with performance-based time multipliers',
+        'Fully responsive UI for seamless engagement across all devices',
+      ],
+    },
+  },
+  {
     title: 'CDGA – AI-Assisted Document Gap Analysis',
     description:
       'End-to-end AI workflow integrating OCR, LLM parsing, classification, markdown processing, dashboards, and automated notifications to automate compliance document review.',

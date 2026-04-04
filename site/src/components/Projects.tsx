@@ -10,7 +10,13 @@ const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
 
-  const categories = ['All', 'Data Engineering', 'Analytics', 'AI/Automation'];
+  const categories = [
+    'All',
+    'Software Engineering',
+    'Data Engineering',
+    'Analytics',
+    'AI/Automation',
+  ];
 
   const filteredProjects =
     selectedCategory === 'All'
